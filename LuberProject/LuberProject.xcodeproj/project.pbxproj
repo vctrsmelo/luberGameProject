@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		152FC3031EFC3CF600901F51 /* taxiGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FC3021EFC3CF600901F51 /* taxiGenerator.swift */; };
+		5B200CCA1EFC5180008759F4 /* background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B200CC91EFC5180008759F4 /* background.swift */; };
 		EE015F841EFC370900027662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015F831EFC370900027662 /* AppDelegate.swift */; };
 		EE015F861EFC370900027662 /* GameManagerScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EE015F851EFC370900027662 /* GameManagerScene.sks */; };
 		EE015F881EFC370900027662 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = EE015F871EFC370900027662 /* Actions.sks */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		152FC3021EFC3CF600901F51 /* taxiGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taxiGenerator.swift; sourceTree = "<group>"; };
+		5B200CC91EFC5180008759F4 /* background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = background.swift; sourceTree = "<group>"; };
 		EE015F801EFC370900027662 /* LuberProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuberProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE015F831EFC370900027662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE015F851EFC370900027662 /* GameManagerScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameManagerScene.sks; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				EE015F9D1EFC379F00027662 /* Core Classes */,
 				EE015F831EFC370900027662 /* AppDelegate.swift */,
 				EE015F851EFC370900027662 /* GameManagerScene.sks */,
+				5B200CC91EFC5180008759F4 /* background.swift */,
 				EE015F871EFC370900027662 /* Actions.sks */,
 				EE015F8B1EFC370900027662 /* GameViewController.swift */,
 				152FC3021EFC3CF600901F51 /* taxiGenerator.swift */,
@@ -128,7 +131,7 @@
 				TargetAttributes = {
 					EE015F7F1EFC370900027662 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = VXAGBDYAT9;
+						DevelopmentTeam = MX697MNWTH;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B200CCA1EFC5180008759F4 /* background.swift in Sources */,
 				EE015FA11EFC37D800027662 /* Luber.swift in Sources */,
 				EE015F8A1EFC370900027662 /* GameManagerScene.swift in Sources */,
 				EE015F8C1EFC370900027662 /* GameViewController.swift in Sources */,
@@ -301,7 +305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VXAGBDYAT9;
+				DEVELOPMENT_TEAM = MX697MNWTH;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.LuberProject;
@@ -314,7 +318,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VXAGBDYAT9;
+				DEVELOPMENT_TEAM = MX697MNWTH;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.LuberProject;

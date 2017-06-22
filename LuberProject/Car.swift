@@ -20,6 +20,7 @@ class Car: NSObject {
     init(spriteName: String, currentLane: Int) {
         self.spriteNode = SKSpriteNode(imageNamed: spriteName)
         self.currentLane = currentLane
+		self.spriteNode.position.y = CGFloat(-400)
     }
     
     func moveToLeft() {

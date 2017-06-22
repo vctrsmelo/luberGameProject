@@ -19,13 +19,22 @@ class GameManagerScene: SKScene {
     private let TAXI_SPRITE_NAME: String = "taxi"
     
     override func didMove(to view: SKView) {
-        luber = Luber(spriteName: "Car01_test", currentLane: 2)
+        luber = Luber(spriteName: "Car01_test02", currentLane: 2)
         luber.addPlayerSwipeRecognizer(to: self.view!)
         addChild(luber.spriteNode)
+		
+		
+		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
+		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
+		Background.shared.scene = self
+		Background.shared.speed = -15
+		
     }
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+		Background.shared.backgroundRoll()
+		Background.shared.backgroundOutOfScreen()
+		
     }
     
     func addTaxi(atLane lane: Int, carXDistance x: CGFloat, taxiSpeed: Float){
