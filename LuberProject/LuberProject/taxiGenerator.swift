@@ -9,7 +9,7 @@
 import UIKit
 
 class taxiGenerator: NSObject {
-   //var gameScene  : gameManagerScene
+   var gameScene  : GameManagerScene
     var present_difficulty : difficulty = .easy
     var maxNumberOfTaxi = 6
     
@@ -35,9 +35,7 @@ class taxiGenerator: NSObject {
 
     //funcao que gera taxis de forma facil
     func generateEasyTaxi(){
-        
-        // gameScene.addTaxi(atLane lane: Int, carXDistance xCars: CGFloat, taxiSpeed: Float)
-        
+            gameScene.addTaxi(1,1,1,1)
     }
     //funcao que gera taxis de forma media
     func generateRegularTaxi(){
@@ -53,11 +51,11 @@ class taxiGenerator: NSObject {
     }
    
     func checkIfCrowded()->Bool{
-//        if gameScene.taxi.count > maxNumberOfTaxi{
-//            return true
-//        }
-//        else {return false}
-        return false
+        if gameScene.taxis.count > maxNumberOfTaxi{
+            return true
+        }
+        else {return false}
+      
     }
     
     
