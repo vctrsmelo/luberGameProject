@@ -17,7 +17,7 @@ class Car: NSObject {
     
     private var size = CGSize(width: 200, height: 400)
     
-    let laneSize = 200
+    let laneSize = 189
     let changeLaneSpeed = 0.2
     
     init(spriteName: String, currentLane: Int) {
