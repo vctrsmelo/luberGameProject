@@ -78,7 +78,6 @@
 				5B200CC91EFC5180008759F4 /* background.swift */,
 				EE015F871EFC370900027662 /* Actions.sks */,
 				EE015F8B1EFC370900027662 /* GameViewController.swift */,
-				152FC3021EFC3CF600901F51 /* taxiGenerator.swift */,
 				EE015F8D1EFC370900027662 /* Main.storyboard */,
 				EE015F901EFC370900027662 /* Assets.xcassets */,
 				EE015F921EFC370900027662 /* LaunchScreen.storyboard */,
@@ -94,7 +93,9 @@
 				EE015F9E1EFC37BE00027662 /* Taxi.swift */,
 				EE015FA01EFC37D800027662 /* Luber.swift */,
 				EE015FA21EFC37EE00027662 /* ScenarioBackground.swift */,
+				152FC3021EFC3CF600901F51 /* taxiGenerator.swift */,
 				EE015F891EFC370900027662 /* GameManagerScene.swift */,
+				EE015F851EFC370900027662 /* GameManagerScene.sks */,
 			);
 			name = "Core Classes";
 			sourceTree = "<group>";
