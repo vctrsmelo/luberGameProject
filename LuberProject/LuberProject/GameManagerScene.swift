@@ -13,6 +13,7 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    private var taxis: [Taxi] = []
     
     override func didMove(to view: SKView) {
         
@@ -20,6 +21,12 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+    }
+    
+    func addTaxi(atLane lane: Int, carXDistance x: CGFloat, taxiSpeed: Float){
+        
+        
+        
     }
     
 }

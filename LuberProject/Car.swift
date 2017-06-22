@@ -9,12 +9,6 @@
 import Foundation
 import SpriteKit
 
-enum Lane {
-    case one
-    case two
-    case three
-}
-
 class Car {
     
     var spriteNode: SKSpriteNode
