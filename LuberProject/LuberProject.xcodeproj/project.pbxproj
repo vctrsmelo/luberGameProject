@@ -72,7 +72,6 @@
 			children = (
 				EE015F9D1EFC379F00027662 /* Core Classes */,
 				EE015F831EFC370900027662 /* AppDelegate.swift */,
-				EE015F851EFC370900027662 /* GameManagerScene.sks */,
 				EE015F871EFC370900027662 /* Actions.sks */,
 				EE015F8B1EFC370900027662 /* GameViewController.swift */,
 				152FC3021EFC3CF600901F51 /* taxiGenerator.swift */,
@@ -92,6 +91,7 @@
 				EE015FA01EFC37D800027662 /* Luber.swift */,
 				EE015FA21EFC37EE00027662 /* ScenarioBackground.swift */,
 				EE015F891EFC370900027662 /* GameManagerScene.swift */,
+				EE015F851EFC370900027662 /* GameManagerScene.sks */,
 			);
 			name = "Core Classes";
 			sourceTree = "<group>";
