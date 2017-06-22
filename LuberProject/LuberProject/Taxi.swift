@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class Taxi: Car{
+    
+    var acceleration: Float
+    
+    override init(spriteName: String, currentLane: Lane, acceleration: Float) {
+        super.init(spriteName: spriteName, currentLane: currentLane)
+        
+    }
+    
+}

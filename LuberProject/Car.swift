@@ -10,9 +10,9 @@ import Foundation
 import SpriteKit
 
 enum Lane {
-    case 1,
-    case 2,
-    case 3
+    case one
+    case two
+    case three
 }
 
 class Car {
@@ -21,7 +21,16 @@ class Car {
     var currentLane: Lane
     
     init(spriteName: String, currentLane: Lane) {
-        self.spriteNode = SKSpriteNode(fileNamed: spriteName)
+
+        let spriteNode = SKSpriteNode(fileNamed: spriteName)
+        if spriteNode == nil {
+            
+            print("[ERROR] Car.swift - init: spriteNode is nil. Possibly the filename is wrong")
+            
+        }
+        
+        self.spriteNode = spriteNode!
         self.currentLane = currentLane
+
     }
 }
