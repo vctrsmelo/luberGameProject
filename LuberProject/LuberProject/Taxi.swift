@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+class Taxi: Car{
+    
+    var speed: Float
+    
+    init(spriteName: String, currentLane: Int, speed: Float) {
+        self.speed = speed
+        super.init(spriteName: spriteName, currentLane: currentLane)
+    }
+}
