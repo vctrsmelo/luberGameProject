@@ -9,11 +9,13 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameManagerScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     private var taxis: [Taxi] = []
+    
+    private let TAXI_SPRITE_NAME: String = "taxi"
     
     override func didMove(to view: SKView) {
         
@@ -25,7 +27,7 @@ class GameScene: SKScene {
     
     func addTaxi(atLane lane: Int, carXDistance x: CGFloat, taxiSpeed: Float){
         
-        
+        var taxi = Taxi(spriteName: TAXI_SPRITE_NAME, currentLane: lane, speed: taxiSpeed)
         
     }
     

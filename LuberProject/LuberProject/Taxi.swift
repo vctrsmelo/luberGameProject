@@ -10,10 +10,10 @@ import Foundation
 
 class Taxi: Car{
     
-    var acceleration: Float
+    var speed: Float
     
-    override init(spriteName: String, currentLane: Int, acceleration: Float) {
+    init(spriteName: String, currentLane: Int, speed: Float) {
+        self.speed = speed
         super.init(spriteName: spriteName, currentLane: currentLane)
-        self.acceleration = acceleration
     }
 }
