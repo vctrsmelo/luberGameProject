@@ -10,5 +10,9 @@ import Foundation
 
 class Luber: Car{
     
+    override init(spriteName: String, currentLane: Lane) {
+        super.init(spriteName: spriteName, currentLane: currentLane)
+        
+    }
     
 }
