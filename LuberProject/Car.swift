@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class Car {
+class Car: NSObject {
     
     var spriteNode: SKSpriteNode
     var currentLane: Int
