@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class Car {
+class Car: NSObject {
     
     var spriteNode: SKSpriteNode
     var currentLane: Int
@@ -32,8 +32,7 @@ class Car {
 
         self.spriteNode = spriteNode
         self.currentLane = currentLane
-        self.spriteNode.size = self.size
-        
+		self.spriteNode.position.y = CGFloat(-400)
     }
     
     func moveToLeft() {
