@@ -18,13 +18,7 @@ class Car: NSObject {
     let changeLaneSpeed = 0.2
     
     init(spriteName: String, currentLane: Int) {
-
-        let spriteNode = SKSpriteNode(fileNamed: spriteName)
-        if spriteNode == nil {
-            print("[ERROR] Car.swift - init: spriteNode is nil. Possibly the filename is wrong")
-        }
-        
-        self.spriteNode = spriteNode!
+        self.spriteNode = SKSpriteNode(imageNamed: spriteName)
         self.currentLane = currentLane
     }
     
