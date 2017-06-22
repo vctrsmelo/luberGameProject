@@ -20,7 +20,7 @@ class GameManagerScene: SKScene {
     private var lane2: SKNode!
     private var lane3: SKNode!
     
-    private let TAXI_SPRITE_NAME: String = "spaceship"
+    private let TAXI_SPRITE_NAME: String = "Car01_test02"
     
     override func sceneDidLoad() {
 
@@ -29,9 +29,7 @@ class GameManagerScene: SKScene {
             self.lane2 = lane2
             self.lane3 = lane3
         }
-        
-        addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
-        
+        //addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
         
     }
     

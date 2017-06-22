@@ -13,6 +13,7 @@ class Car: NSObject {
     
     var spriteNode: SKSpriteNode
     var currentLane: Int
+    var isMoving: Bool = false
     
     private var size = CGSize(width: 200, height: 400)
     
@@ -20,23 +21,14 @@ class Car: NSObject {
     let changeLaneSpeed = 0.2
     
     init(spriteName: String, currentLane: Int) {
-
-        let spriteNode = SKSpriteNode()
-
-//        let texture = SKTexture(imageNamed: spriteName)
-//        if texture == nil {
-//            print("[ERROR] Car.swift - init: spriteNode is nil. Possibly the filename is wrong")
-//        }
-//        
-//        spriteNode.texture = texture
-
-        self.spriteNode = spriteNode
+        self.spriteNode = SKSpriteNode(imageNamed: spriteName)
         self.currentLane = currentLane
 		self.spriteNode.position.y = CGFloat(-400)
     }
     
     func moveToLeft() {
-        if currentLane > 1 {
+        if !isMoving && currentLane > 1 {
+            isMoving = true
             currentLane -= 1
             
             let move = SKAction.move(by: CGVector(dx: -laneSize, dy: 0),
@@ -50,11 +42,13 @@ class Car: NSObject {
             let sequence = SKAction.sequence([group, rotateRight])
             
             spriteNode.run(sequence, withKey: "moveToLeft")
+            isMoving = false
         }
     }
     
     func moveToRight() {
-        if currentLane < 3 {
+        if !isMoving && currentLane < 3 {
+            isMoving = true
             currentLane += 1
             
             let move = SKAction.move(by: CGVector(dx: laneSize, dy: 0), duration: changeLaneSpeed)
@@ -67,6 +61,7 @@ class Car: NSObject {
             let sequence = SKAction.sequence([group, rotateLeft])
             
             spriteNode.run(sequence, withKey: "moveToRight")
+            isMoving = false
         }
     }
 

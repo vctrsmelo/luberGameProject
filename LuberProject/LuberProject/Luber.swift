@@ -11,10 +11,6 @@ import SpriteKit
 
 class Luber: Car {
     
-    override init(spriteName: String, currentLane: Int) {
-        super.init(spriteName: spriteName, currentLane: currentLane)
-    }
-    
     func addPlayerSwipeRecognizer(to view: SKView!) {
         let swipeLeft = UISwipeGestureRecognizer()
         swipeLeft.direction = .left

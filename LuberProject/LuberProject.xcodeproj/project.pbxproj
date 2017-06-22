@@ -95,7 +95,6 @@
 				EE015FA21EFC37EE00027662 /* ScenarioBackground.swift */,
 				152FC3021EFC3CF600901F51 /* taxiGenerator.swift */,
 				EE015F891EFC370900027662 /* GameManagerScene.swift */,
-				EE015F851EFC370900027662 /* GameManagerScene.sks */,
 			);
 			name = "Core Classes";
 			sourceTree = "<group>";
@@ -132,7 +131,7 @@
 				TargetAttributes = {
 					EE015F7F1EFC370900027662 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = MX697MNWTH;
+						DevelopmentTeam = Y93HUJS49V;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -306,7 +305,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MX697MNWTH;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.LuberProject;
@@ -319,7 +318,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = MX697MNWTH;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.LuberProject;
