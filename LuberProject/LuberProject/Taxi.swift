@@ -12,9 +12,8 @@ class Taxi: Car{
     
     var acceleration: Float
     
-    override init(spriteName: String, currentLane: Lane, acceleration: Float) {
+    override init(spriteName: String, currentLane: Int, acceleration: Float) {
         super.init(spriteName: spriteName, currentLane: currentLane)
-        
+        self.acceleration = acceleration
     }
-    
 }
