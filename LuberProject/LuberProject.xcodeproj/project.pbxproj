@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		152FC3031EFC3CF600901F51 /* taxiGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FC3021EFC3CF600901F51 /* taxiGenerator.swift */; };
 		EE015F841EFC370900027662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015F831EFC370900027662 /* AppDelegate.swift */; };
 		EE015F861EFC370900027662 /* GameManagerScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EE015F851EFC370900027662 /* GameManagerScene.sks */; };
 		EE015F881EFC370900027662 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = EE015F871EFC370900027662 /* Actions.sks */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		152FC3021EFC3CF600901F51 /* taxiGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taxiGenerator.swift; sourceTree = "<group>"; };
 		EE015F801EFC370900027662 /* LuberProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuberProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE015F831EFC370900027662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE015F851EFC370900027662 /* GameManagerScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameManagerScene.sks; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				EE015F851EFC370900027662 /* GameManagerScene.sks */,
 				EE015F871EFC370900027662 /* Actions.sks */,
 				EE015F8B1EFC370900027662 /* GameViewController.swift */,
+				152FC3021EFC3CF600901F51 /* taxiGenerator.swift */,
 				EE015F8D1EFC370900027662 /* Main.storyboard */,
 				EE015F901EFC370900027662 /* Assets.xcassets */,
 				EE015F921EFC370900027662 /* LaunchScreen.storyboard */,
@@ -171,6 +174,7 @@
 				EE015FA11EFC37D800027662 /* Luber.swift in Sources */,
 				EE015F8A1EFC370900027662 /* GameManagerScene.swift in Sources */,
 				EE015F8C1EFC370900027662 /* GameViewController.swift in Sources */,
+				152FC3031EFC3CF600901F51 /* taxiGenerator.swift in Sources */,
 				EE015F9F1EFC37BE00027662 /* Taxi.swift in Sources */,
 				EE015FA31EFC37EE00027662 /* ScenarioBackground.swift in Sources */,
 				EE015F9C1EFC379600027662 /* Car.swift in Sources */,
@@ -338,6 +342,7 @@
 				EE015F9A1EFC370900027662 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
