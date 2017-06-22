@@ -20,15 +20,13 @@ class taxiGenerator: NSObject {
        
         
         if (!checkIfCrowded()){ // VERIFICA SE TEM MUITOS CARROS NA TELA
-        switch present_difficulty {
-        case .easy:
-            generateEasyTaxi()
-        case .regular:
-            generateRegularTaxi()
-        case .hard:
-            generateHardTaxi()
-        default:
-            generateEasyTaxi()
+            switch present_difficulty {
+            case .easy:
+                generateEasyTaxi()
+            case .regular:
+                generateRegularTaxi()
+            case .hard:
+                generateHardTaxi()
             }
         }
         

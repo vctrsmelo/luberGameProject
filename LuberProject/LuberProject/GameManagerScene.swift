@@ -10,11 +10,8 @@ import SpriteKit
 import GameplayKit
 
 class GameManagerScene: SKScene {
-    
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
-    var taxis: [Taxi] = []
     var luber: Luber!
+    var taxis: [Taxi] = []
 
     private var lane1: SKNode!
     private var lane2: SKNode!
@@ -23,14 +20,12 @@ class GameManagerScene: SKScene {
     private let TAXI_SPRITE_NAME: String = "Car01_test02"
     
     override func sceneDidLoad() {
-
-        if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "//lane3"){
+        if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "lane3"){
             self.lane1 = lane1
             self.lane2 = lane2
             self.lane3 = lane3
         }
         //addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
-        
     }
     
     override func didMove(to view: SKView) {
@@ -50,14 +45,13 @@ class GameManagerScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
 		Background.shared.backgroundRoll()
 		Background.shared.backgroundOutOfScreen()
-		
     }
     
     func addTaxi(atLane lane: Int, carYDistance yCars: CGFloat, taxiSpeed: Float){
         
-        var taxi = Taxi(spriteName: TAXI_SPRITE_NAME, currentLane: lane, speed: taxiSpeed)
+        let taxi = Taxi(spriteName: TAXI_SPRITE_NAME, currentLane: lane, speed: taxiSpeed)
         
-        var taxiHeight = taxi.spriteNode.frame.size.height
+        let taxiHeight = taxi.spriteNode.frame.size.height
         
         var laneX = lane1.frame.origin.x
         
