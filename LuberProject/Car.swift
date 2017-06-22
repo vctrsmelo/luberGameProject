@@ -9,17 +9,31 @@
 import Foundation
 import SpriteKit
 
-class Car: NSObject {
+class Car {
     
     var spriteNode: SKSpriteNode
     var currentLane: Int
+    
+    private var size = CGSize(width: 200, height: 400)
     
     let laneSize = 200
     let changeLaneSpeed = 0.2
     
     init(spriteName: String, currentLane: Int) {
-        self.spriteNode = SKSpriteNode(imageNamed: spriteName)
+
+        let spriteNode = SKSpriteNode()
+
+//        let texture = SKTexture(imageNamed: spriteName)
+//        if texture == nil {
+//            print("[ERROR] Car.swift - init: spriteNode is nil. Possibly the filename is wrong")
+//        }
+//        
+//        spriteNode.texture = texture
+
+        self.spriteNode = spriteNode
         self.currentLane = currentLane
+        self.spriteNode.size = self.size
+        
     }
     
     func moveToLeft() {
