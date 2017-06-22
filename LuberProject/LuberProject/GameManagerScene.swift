@@ -25,21 +25,24 @@ class GameManagerScene: SKScene {
             self.lane2 = lane2
             self.lane3 = lane3
         }
-        //addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
+        
+        // TAXI TEST
+        addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
+        let moveTaxi = SKAction.move(by: CGVector(dx: 0, dy: -1000), duration: 5)
+        let taxi: Taxi = taxis[0]
+        taxi.spriteNode.run(moveTaxi)
+        // END TAXI TEST
     }
     
     override func didMove(to view: SKView) {
         luber = Luber(spriteName: "Car01_test02", currentLane: 2)
-    
         luber.addPlayerSwipeRecognizer(to: self.view!)
         addChild(luber.spriteNode)
-		
 		
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
 		Background.shared.scene = self
 		Background.shared.speed = -15
-		
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -48,28 +51,19 @@ class GameManagerScene: SKScene {
     }
     
     func addTaxi(atLane lane: Int, carYDistance yCars: CGFloat, taxiSpeed: Float){
-        
         let taxi = Taxi(spriteName: TAXI_SPRITE_NAME, currentLane: lane, speed: taxiSpeed)
-        
         let taxiHeight = taxi.spriteNode.frame.size.height
         
         var laneX = lane1.frame.origin.x
-        
         if(lane == 2){
-            
             laneX = lane2.frame.origin.x
-            
         }else if(lane == 3){
-            
             laneX = lane3.frame.origin.x
-            
         }
         
         taxi.spriteNode.position = CGPoint(x: laneX, y: self.frame.size.height/2+taxiHeight/2+taxiHeight*yCars)
         taxi.spriteNode.color = SKColor.red
         self.taxis.append(taxi)
         self.addChild(taxi.spriteNode)
-        
     }
-    
 }
