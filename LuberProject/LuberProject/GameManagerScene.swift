@@ -14,6 +14,7 @@ class GameManagerScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     var taxis: [Taxi] = []
+    var luber: Luber!
 
     private var lane1: SKNode!
     private var lane2: SKNode!
@@ -36,6 +37,7 @@ class GameManagerScene: SKScene {
     
     override func didMove(to view: SKView) {
         luber = Luber(spriteName: "Car01_test02", currentLane: 2)
+    
         luber.addPlayerSwipeRecognizer(to: self.view!)
         addChild(luber.spriteNode)
 		
