@@ -32,8 +32,7 @@ class Car: NSObject {
 
         self.spriteNode = spriteNode
         self.currentLane = currentLane
-        self.spriteNode.size = self.size
-        
+		self.spriteNode.position.y = CGFloat(-400)
     }
     
     func moveToLeft() {
