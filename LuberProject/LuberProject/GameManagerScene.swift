@@ -48,6 +48,10 @@ class GameManagerScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
 		Background.shared.backgroundRoll()
 		Background.shared.backgroundOutOfScreen()
+        
+        if hasColision() {
+            self.run(SKAction.stop())
+        }
     }
     
     func addTaxi(atLane lane: Int, carYDistance yCars: CGFloat, taxiSpeed: Float){
@@ -65,5 +69,21 @@ class GameManagerScene: SKScene {
         taxi.spriteNode.color = SKColor.red
         self.taxis.append(taxi)
         self.addChild(taxi.spriteNode)
+    }
+    
+    func hasColision() -> Bool {
+        let x = luber.spriteNode.position.x
+        let y = luber.spriteNode.position.y
+        
+        for taxi in taxis {
+            if x > taxi.spriteNode.position.x + taxi.spriteNode.size.width && x < taxi.spriteNode.position.x - taxi.spriteNode.size.width {
+                if y > taxi.spriteNode.position.y + taxi.spriteNode.size.height && y < taxi.spriteNode.position.y - taxi.spriteNode.size.height {
+                    print("\nCOLIDIU\n\n")
+                    return true
+                }
+            }
+        }
+        
+        return false
     }
 }
