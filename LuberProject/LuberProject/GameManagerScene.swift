@@ -19,6 +19,9 @@ class GameManagerScene: SKScene {
     
     private let TAXI_SPRITE_NAME: String = "Car01_test02"
     
+    private var endGame : Int?
+    private var highscoreLabel : SKLabelNode?
+    
     override func sceneDidLoad() {
         if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "lane3"){
             self.lane1 = lane1
@@ -34,7 +37,7 @@ class GameManagerScene: SKScene {
 		
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
-		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as! SKLabelNode
+		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as? SKLabelNode
 		Background.shared.scene = self
 		Background.shared.speed = -15
         
@@ -47,6 +50,8 @@ class GameManagerScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        self.highscoreLabel = self.childNode(withName: "highscore") as? SKLabelNode
+        
 		Background.shared.backgroundRoll()
 		Background.shared.backgroundOutOfScreen()
         
@@ -85,12 +90,28 @@ class GameManagerScene: SKScene {
         for taxi in taxis {
             if x > (taxi.spriteNode.position.x - taxi.spriteNode.size.width) && x < (taxi.spriteNode.position.x + taxi.spriteNode.size.width) {
                 if y > (taxi.spriteNode.position.y - taxi.spriteNode.size.height) && y < (taxi.spriteNode.position.y + taxi.spriteNode.size.height) {
-                    print("\nCOLIDIU\n")
                     return true
                 }
             }
         }
         
         return false
+    }
+    
+    func endGameState(){
+        let currentScore = Background.shared.distance 
+        let userDefaults = UserDefaults.standard
+        
+        if let highscore = userDefaults.value(forKey: "highscore") as? Float{
+            
+            if(Float(highscore) < currentScore){
+                userDefaults.set(currentScore, forKey: "highscore")
+                userDefaults.synchronize()
+                
+            }
+            
+            highscoreLabel?.text = String(highscore)
+        }
+        
     }
 }
