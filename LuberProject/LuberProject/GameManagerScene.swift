@@ -13,6 +13,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	var luber: Luber!
 	var taxis: [Taxi] = []
     var timer = Timer()
+    var distance: Float = 0.0
 	
 	public var viewController : GameSceneViewController!
     private var taxiGen : taxiGenerator?
@@ -40,8 +41,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 		luber.addPlayerSwipeRecognizer(to: self.view!)
 		addChild(luber.spriteNode)
 		
-<<<<<<< HEAD
-=======
+
         playAudios()
         
 		if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "//lane3"){
@@ -49,8 +49,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 			self.lane2 = lane2
 			self.lane3 = lane3
 		}
-		
->>>>>>> audios
+
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
 		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as? SKLabelNode
