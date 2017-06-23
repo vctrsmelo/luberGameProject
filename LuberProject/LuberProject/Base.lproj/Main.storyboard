@@ -59,10 +59,33 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="currentScore" destination="tVA-Hr-UjG" id="3VB-eN-4pN"/>
+                        <outlet property="highscore" destination="gDE-t8-ExM" id="yac-qb-5or"/>
+                        <segue destination="Ygk-C6-mjv" kind="show" identifier="gotoCredits" id="hV0-FK-C5P"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qba-Zp-50C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1796" y="139.880059970015"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hoT-E3-byp">
+            <objects>
+                <viewController id="Ygk-C6-mjv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mHi-so-8Vo"/>
+                        <viewControllerLayoutGuide type="bottom" id="6GY-k5-GbR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ut1-5F-X56" customClass="CreditsViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9UB-Mg-6Lb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1882" y="1307"/>
         </scene>
     </scenes>
 </document>

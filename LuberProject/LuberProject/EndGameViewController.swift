@@ -10,9 +10,18 @@ import UIKit
 
 class EndGameViewController: UIViewController {
 
+	@IBOutlet weak var highscore: UILabel!
+	@IBOutlet weak var currentScore: UILabel!
+	
+	public var currentScoreString : String = ""
+	public var highscoreString : String = ""
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		
+		currentScore.text = currentScoreString
+		highscore.text = highscoreString
+		
         // Do any additional setup after loading the view.
     }
 

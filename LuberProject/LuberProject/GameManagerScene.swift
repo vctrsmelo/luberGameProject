@@ -13,14 +13,18 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	var luber: Luber!
 	var taxis: [Taxi] = []
     var timer = Timer()
+    var distance :Float = 0.0
 	
 	public var viewController : GameSceneViewController!
+	
     private var taxiGen : taxiGenerator?
 	private var lane1: SKNode!
 	private var lane2: SKNode!
 	private var lane3: SKNode!
 	private let TAXI_SPRITE_NAME: String = "Taxi_test01"
-	private var highscoreLabel : SKLabelNode?
+	
+	public var highscoreLabel : SKLabelNode?
+	
 	private var hasGameOver: Bool!
 	
 	override func sceneDidLoad() {
@@ -86,32 +90,32 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 			Background.shared.speed = 0
 			
 			for taxi in taxis {
-				taxi.spriteNode.removeAction(forKey: "taxiTest")
-				
+				taxi.spriteNode.removeAction(forKey: "taxiMovement")
 			}
 			
 			endGameState()
 		}
 	}
 	
-
-	
 	func endGameState(){
 		
 		let currentScore = Background.shared.distance 
 		let userDefaults = UserDefaults.standard
 		
-		if let highscore = userDefaults.value(forKey: "highscore") as? Float{
+		let highscore = userDefaults.value(forKey: "highscore") as? Float
 			
-			if(Float(highscore) < currentScore){
-				userDefaults.set(currentScore, forKey: "highscore")
-				userDefaults.synchronize()
-				
-			}
-			
-			highscoreLabel?.text = String(highscore)
-		}
+		userDefaults.set(currentScore, forKey: "highscore")
+		userDefaults.synchronize()
 		
+		
+		
+			
+		
+		highscoreLabel?.text = String(describing: highscore)
+		
+		
+		viewController.currentScore = String(currentScore)
+		viewController.highscore = highscoreLabel?.text
 		viewController.performSegue(withIdentifier: "endGame", sender: self)
 		
 	}
