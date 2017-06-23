@@ -12,7 +12,8 @@ import GameplayKit
 class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 	var luber: Luber!
 	var taxis: [Taxi] = []
-	
+    var timer = Timer()
+    private var taxiGen : taxiGenerator?
 	private var lane1: SKNode!
 	private var lane2: SKNode!
 	private var lane3: SKNode!
@@ -43,10 +44,6 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 			self.lane2 = lane2
 			self.lane3 = lane3
 		}
-		//addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
-		
-		endGame = Int(arc4random_uniform(2) + 1)
-		
 		
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
@@ -55,16 +52,13 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		Background.shared.speed = -15
 		
 		// TAXI TEST
-		addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
-		let moveTaxi = SKAction.move(by: CGVector(dx: 0, dy: -1500), duration: 5)
-		let taxi: Taxi = taxis[0]
-		taxi.spriteNode.run(moveTaxi, withKey: "taxiTest")
+        taxiGen = taxiGenerator(scene: self)
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
 		// END TAXI TEST
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
-		
-		self.highscoreLabel = self.childNode(withName: "highscore") as! SKLabelNode
+		self.highscoreLabel = self.childNode(withName: "highscore") as? SKLabelNode
 		
 		Background.shared.backgroundRoll()
 		Background.shared.backgroundOutOfScreen()
@@ -73,7 +67,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 	}
 	
 	func addTaxi(atLane lane: Int, carYDistance yCars: CGFloat, taxiSpeed: Float){
-		let taxi = Taxi(spriteName: TAXI_SPRITE_NAME, currentLane: lane, speed: taxiSpeed)
+		let taxi = Taxi(spriteName: TAXI_SPRITE_NAME, currentLane: lane, speed: taxiSpeed, scene: self)
 		let taxiHeight = taxi.spriteNode.frame.size.height
 		
 		var laneX = lane1.frame.origin.x
@@ -108,7 +102,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 	
 	func endGameState(){
 		
-		let currentScore = Background.shared.distance as! Float
+		let currentScore = Background.shared.distance 
 		let userDefaults = UserDefaults.standard
 		
 		if let highscore = userDefaults.value(forKey: "highscore") as? Float{
@@ -123,7 +117,18 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		}
 		
 	}
+    func generateTaxi(){
+        taxiGen?.trytoGenerate()
+    }
+    func removeTaxi(taxi:Taxi){
+        for i  in 0...taxis.count{
+            if (taxi==taxis[i]){taxis[i].spriteNode.removeFromParent()
+                taxis.remove(at: i)
+                
+                break}
+        }
 	
+}
 }
 
 
