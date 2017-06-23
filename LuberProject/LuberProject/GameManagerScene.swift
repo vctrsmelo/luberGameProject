@@ -13,6 +13,7 @@ class GameManagerScene: SKScene {
 	var luber: Luber!
 	var taxis: [Taxi] = []
     var timer = Timer()
+    var distance :Float = 0.0
     private var taxiGen : taxiGenerator?
 	private var lane1: SKNode!
 	private var lane2: SKNode!
@@ -51,13 +52,13 @@ class GameManagerScene: SKScene {
 		
 		// TAXI TEST
         taxiGen = taxiGenerator(scene: self)
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
 		// END TAXI TEST
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
 		self.highscoreLabel = self.childNode(withName: "highscore") as? SKLabelNode
-		
+		distance = Background.shared.distance
 		Background.shared.backgroundRoll()
 		Background.shared.backgroundOutOfScreen()
 		
