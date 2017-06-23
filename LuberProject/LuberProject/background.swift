@@ -26,7 +26,7 @@ class Background: NSObject {
 	
 	private override init() {
 		self.coeficientIncrementSpeed = 5
-		self.coeficientDeltaDistance = 0.5
+		self.coeficientDeltaDistance = 0.2
 		self.distance = 0.0
 		self.deltaDistance = 0.0
 		self.speedLimit = 80.0

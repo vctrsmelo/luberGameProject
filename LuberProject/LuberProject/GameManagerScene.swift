@@ -49,14 +49,14 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
 		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as? SKLabelNode
 		Background.shared.scene = self
-		Background.shared.speed = -15
+		Background.shared.speed = -25
 		
 		// TAXI TEST
      
 		// END TAXI TEST
         if !hasGameOver {
             taxiGen = taxiGenerator(scene: self)
-            timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
         }
 	}
 	

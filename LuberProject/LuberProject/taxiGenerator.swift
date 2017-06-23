@@ -44,7 +44,7 @@ class taxiGenerator: NSObject {
     //funcao que gera taxis de forma facil
     func generateEasyTaxi(){
         
-        geraUmTaxi(speed: 4.5)
+        geraUmTaxi(speed: 3)
         
         
     }
