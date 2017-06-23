@@ -52,9 +52,12 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		Background.shared.speed = -15
 		
 		// TAXI TEST
-        taxiGen = taxiGenerator(scene: self)
-        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+     
 		// END TAXI TEST
+        if !hasGameOver {
+            taxiGen = taxiGenerator(scene: self)
+            timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+        }
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
