@@ -39,7 +39,7 @@ class Car: NSObject {
             if currentLane > 1 {
                 currentLane -= 1
                 
-                let move = SKAction.move(by: CGVector(dx: -laneSize, dy: 0),
+                let move = SKAction.move(to: CGPoint(x: (currentLane - 2) * laneSize, y: Int(spriteNode.position.y)),
                                          duration: changeLaneSpeed)
                 let rotate = SKAction.rotate(byAngle: CGFloat(GLKMathDegreesToRadians(30.0)),
                                              duration: changeLaneSpeed/2)
@@ -51,6 +51,7 @@ class Car: NSObject {
                 
                 spriteNode.run(sequence, withKey: "moveToLeft")
             }
+            
             isMoving = false
         }
     }
@@ -62,7 +63,8 @@ class Car: NSObject {
             if currentLane < 3 {
                 currentLane += 1
                 
-                let move = SKAction.move(by: CGVector(dx: laneSize, dy: 0), duration: changeLaneSpeed)
+                let move = SKAction.move(to: CGPoint(x: (currentLane - 2) * laneSize, y: Int(spriteNode.position.y)),
+                                         duration: changeLaneSpeed)
                 let rotate = SKAction.rotate(byAngle: CGFloat(GLKMathDegreesToRadians(-30.0)),
                                              duration: changeLaneSpeed/2)
                 let rotateBack = SKAction.rotate(toAngle: CGFloat(GLKMathDegreesToRadians(0.0)),
@@ -73,8 +75,8 @@ class Car: NSObject {
                 
                 spriteNode.run(sequence, withKey: "moveToRight")
             }
+            
             isMoving = false
         }
     }
-
 }
