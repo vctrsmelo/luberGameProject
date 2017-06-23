@@ -53,7 +53,6 @@ class GameManagerScene: SKScene {
 		luber.addPlayerSwipeRecognizer(to: self.view!)
 		addChild(luber.spriteNode)
 		
-		
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
 		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as! SKLabelNode

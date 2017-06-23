@@ -17,7 +17,7 @@ class Car: NSObject {
     
     private var size = CGSize(width: 200, height: 400)
     
-    let laneSize = 200
+    let laneSize = 189
     let changeLaneSpeed = 0.2
     
     init(spriteName: String, currentLane: Int) {
@@ -27,40 +27,46 @@ class Car: NSObject {
     }
     
     func moveToLeft() {
-        if !isMoving && currentLane > 1 {
+        if !isMoving {
             isMoving = true
-            currentLane -= 1
             
-            let move = SKAction.move(by: CGVector(dx: -laneSize, dy: 0),
-                                     duration: changeLaneSpeed)
-            let rotateLeft = SKAction.rotate(byAngle: CGFloat(GLKMathDegreesToRadians(30.0)),
+            if currentLane > 1 {
+                currentLane -= 1
+                
+                let move = SKAction.move(by: CGVector(dx: -laneSize, dy: 0),
+                                         duration: changeLaneSpeed)
+                let rotate = SKAction.rotate(byAngle: CGFloat(GLKMathDegreesToRadians(30.0)),
                                              duration: changeLaneSpeed/2)
-            let rotateRight = SKAction.rotate(byAngle: CGFloat(GLKMathDegreesToRadians(-30.0)),
-                                              duration: changeLaneSpeed/2)
-            
-            let group = SKAction.group([move, rotateLeft])
-            let sequence = SKAction.sequence([group, rotateRight])
-            
-            spriteNode.run(sequence, withKey: "moveToLeft")
+                let rotateBack = SKAction.rotate(toAngle: CGFloat(GLKMathDegreesToRadians(0.0)),
+                                                 duration: changeLaneSpeed/2)
+                
+                let group = SKAction.group([move, rotate])
+                let sequence = SKAction.sequence([group, rotateBack])
+                
+                spriteNode.run(sequence, withKey: "moveToLeft")
+            }
             isMoving = false
         }
     }
     
     func moveToRight() {
-        if !isMoving && currentLane < 3 {
+        if !isMoving {
             isMoving = true
-            currentLane += 1
             
-            let move = SKAction.move(by: CGVector(dx: laneSize, dy: 0), duration: changeLaneSpeed)
-            let rotateRight = SKAction.rotate(byAngle: CGFloat(GLKMathDegreesToRadians(-30.0)),
-                                              duration: changeLaneSpeed/2)
-            let rotateLeft = SKAction.rotate(byAngle: CGFloat(GLKMathDegreesToRadians(30.0)),
+            if currentLane < 3 {
+                currentLane += 1
+                
+                let move = SKAction.move(by: CGVector(dx: laneSize, dy: 0), duration: changeLaneSpeed)
+                let rotate = SKAction.rotate(byAngle: CGFloat(GLKMathDegreesToRadians(-30.0)),
                                              duration: changeLaneSpeed/2)
-            
-            let group = SKAction.group([move, rotateRight])
-            let sequence = SKAction.sequence([group, rotateLeft])
-            
-            spriteNode.run(sequence, withKey: "moveToRight")
+                let rotateBack = SKAction.rotate(toAngle: CGFloat(GLKMathDegreesToRadians(0.0)),
+                                                 duration: changeLaneSpeed/2)
+                
+                let group = SKAction.group([move, rotate])
+                let sequence = SKAction.sequence([group, rotateBack])
+                
+                spriteNode.run(sequence, withKey: "moveToRight")
+            }
             isMoving = false
         }
     }
