@@ -18,7 +18,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 	private var lane2: SKNode!
 	private var lane3: SKNode!
 	
-	private let TAXI_SPRITE_NAME: String = "Car01_test02"
+	private let TAXI_SPRITE_NAME: String = "Taxi_test01"
 	
 	private var endGame : Int?
 	private var highscoreLabel : SKLabelNode?
