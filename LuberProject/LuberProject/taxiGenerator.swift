@@ -28,7 +28,7 @@ class taxiGenerator: NSObject {
         if (checkIfCrowded()){ // VERIFICA SE TEM MUITOS CARROS NA TELA
             switch present_difficulty {
             case .easy:
-                generateEasyTaxi()
+                generateRegularTaxi()
             case .regular:
                 generateRegularTaxi()
             case .hard:
@@ -41,14 +41,17 @@ class taxiGenerator: NSObject {
 
     //funcao que gera taxis de forma facil
     func generateEasyTaxi(){
-            let random = Int((arc4random_uniform(3))+1)
         
-            gameScene.addTaxi(atLane:random ,carYDistance: 1,taxiSpeed: 3)
+        geraUmTaxi(speed: 4.5)
+        
+        
     }
     //funcao que gera taxis de forma media
     func generateRegularTaxi(){
+        let random = Int(arc4random_uniform(3))
         
-        // gameScene.addTaxi(atLane lane: Int, carXDistance xCars: CGFloat, taxiSpeed: Float)
+        if random==1{geraDoisTaxi(speed: 3)}
+        else {geraUmTaxi(speed: 3)}
         
     }
     //funcao que gera taxis de forma dificil
@@ -66,6 +69,24 @@ class taxiGenerator: NSObject {
       
     }
 
+    func geraDoisTaxi(speed: Float){
+            let random = Int((arc4random_uniform(3))+1)
+            var random2 = Int((arc4random_uniform(3))+1)
+        while random==random2 {
+            random2 = Int((arc4random_uniform(3))+1)
+        }
+        
+        gameScene.addTaxi(atLane:random ,carYDistance: 1,taxiSpeed: Float(speed))
+        gameScene.addTaxi(atLane:random2 ,carYDistance: 1,taxiSpeed: Float(speed))
+
+    
+    }
+    func geraUmTaxi(speed: Float){
+        let random = Int((arc4random_uniform(3))+1)
+        
+  gameScene.addTaxi(atLane:random ,carYDistance: 1,taxiSpeed: Float(speed))
+    
+    }
     
     func verifyCurrentDifficulty (){
         let  gameManagerScenekm = 10
