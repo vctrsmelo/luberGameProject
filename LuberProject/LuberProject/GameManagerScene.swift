@@ -41,7 +41,7 @@ class GameManagerScene: SKScene {
         addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
         let moveTaxi = SKAction.move(by: CGVector(dx: 0, dy: -1500), duration: 5)
         let taxi: Taxi = taxis[0]
-        taxi.spriteNode.run(moveTaxi)
+        taxi.spriteNode.run(moveTaxi, withKey: "taxiTest")
         // END TAXI TEST
     }
     
@@ -50,7 +50,13 @@ class GameManagerScene: SKScene {
 		Background.shared.backgroundOutOfScreen()
         
         if hasColision() {
-            self.run(SKAction.stop())
+            luber.spriteNode.removeAction(forKey: "moveToLeft")
+            luber.spriteNode.removeAction(forKey: "moveToRight")
+            Background.shared.speed = 0
+            
+            for taxi in taxis {
+                taxi.spriteNode.removeAction(forKey: taxiTest")
+            }
         }
     }
     
