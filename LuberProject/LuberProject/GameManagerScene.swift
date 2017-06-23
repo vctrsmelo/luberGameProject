@@ -9,11 +9,12 @@
 import SpriteKit
 import GameplayKit
 
-class GameManagerScene: SKScene, SKPhysicsContactDelegate {
+class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	var luber: Luber!
 	var taxis: [Taxi] = []
     var timer = Timer()
-    var distance :Float = 0.0
+	
+	public var viewController : GameSceneViewController!
     private var taxiGen : taxiGenerator?
 	private var lane1: SKNode!
 	private var lane2: SKNode!
@@ -39,21 +40,12 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		luber.addPlayerSwipeRecognizer(to: self.view!)
 		addChild(luber.spriteNode)
 		
-		if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "//lane3"){
-			self.lane1 = lane1
-			self.lane2 = lane2
-			self.lane3 = lane3
-		}
-		
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
 		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as? SKLabelNode
 		Background.shared.scene = self
 		Background.shared.speed = -25
 		
-		// TAXI TEST
-     
-		// END TAXI TEST
         if !hasGameOver {
             taxiGen = taxiGenerator(scene: self)
             timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
@@ -83,8 +75,6 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		self.addChild(taxi.spriteNode)
 	}
 	
-	
-	
 	func didBegin(_ contact: SKPhysicsContact) {
 	
 		if(contact.bodyA.node == luber.spriteNode || contact.bodyB.node == luber.spriteNode){
@@ -96,10 +86,15 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 			Background.shared.speed = 0
 			
 			for taxi in taxis {
-				taxi.spriteNode.removeAction(forKey: "taxiMovement")
+				taxi.spriteNode.removeAction(forKey: "taxiTest")
+				
 			}
+			
+			endGameState()
 		}
 	}
+	
+
 	
 	func endGameState(){
 		
@@ -116,6 +111,8 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 			
 			highscoreLabel?.text = String(highscore)
 		}
+		
+		viewController.performSegue(withIdentifier: "endGame", sender: self)
 		
 	}
     func generateTaxi(){
