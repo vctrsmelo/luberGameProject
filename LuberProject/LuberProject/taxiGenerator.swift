@@ -1,6 +1,12 @@
+////
+////  taxiGenerator.swift
+////  LuberProject
+////
+////  Created by Bruno da Silva Dorneles on 22/06/17.
+////  Copyright © 2017 Victor S Melo. All rights reserved.
+////
 //
-//  taxiGenerator.swift
-//  LuberProject
+//import UIKit
 //
 //  Created by Bruno da Silva Dorneles on 22/06/17.
 //  Copyright © 2017 Victor S Melo. All rights reserved.
@@ -11,7 +17,7 @@ import UIKit
 class taxiGenerator: NSObject {
    var gameScene  : GameManagerScene
     var present_difficulty : difficulty = .easy
-    var maxNumberOfTaxi = 6
+    var maxNumberOfTaxi = 8
     init(scene:GameManagerScene ) {
         gameScene = scene
     }
@@ -19,7 +25,7 @@ class taxiGenerator: NSObject {
         verifyCurrentDifficulty() // VERIFICA SE PASSOU DOS NUMEROS DE KM AVALIADOS E MUDA A DIFICULDADE SE PASSOU
        
         
-        if (!checkIfCrowded()){ // VERIFICA SE TEM MUITOS CARROS NA TELA
+        if (checkIfCrowded()){ // VERIFICA SE TEM MUITOS CARROS NA TELA
             switch present_difficulty {
             case .easy:
                 generateEasyTaxi()
@@ -35,7 +41,9 @@ class taxiGenerator: NSObject {
 
     //funcao que gera taxis de forma facil
     func generateEasyTaxi(){
-            gameScene.addTaxi(atLane: 1,carYDistance: 1,taxiSpeed: 1)
+            let random = Int((arc4random_uniform(3))+1)
+        
+            gameScene.addTaxi(atLane:random ,carYDistance: 1,taxiSpeed: 3)
     }
     //funcao que gera taxis de forma media
     func generateRegularTaxi(){
@@ -52,12 +60,12 @@ class taxiGenerator: NSObject {
    
     func checkIfCrowded()->Bool{
         if gameScene.taxis.count > maxNumberOfTaxi{
-            return true
+            return false
         }
-        else {return false}
+        else {return true}
       
     }
-    
+
     
     func verifyCurrentDifficulty (){
         let  gameManagerScenekm = 10
