@@ -9,10 +9,12 @@
 import SpriteKit
 import GameplayKit
 
-class GameManagerScene: SKScene, SKPhysicsContactDelegate {
+class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	var luber: Luber!
 	var taxis: [Taxi] = []
     var timer = Timer()
+	
+	public var viewController : GameSceneViewController!
     private var taxiGen : taxiGenerator?
 	private var lane1: SKNode!
 	private var lane2: SKNode!
@@ -93,12 +95,14 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 			
 			for taxi in taxis {
 				taxi.spriteNode.removeAction(forKey: "taxiTest")
+				
 			}
-		
+			
+			endGameState()
 		}
 	}
 	
-	
+
 	
 	func endGameState(){
 		
@@ -115,6 +119,8 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 			
 			highscoreLabel?.text = String(highscore)
 		}
+		
+		viewController.performSegue(withIdentifier: "endGame", sender: self)
 		
 	}
     func generateTaxi(){
