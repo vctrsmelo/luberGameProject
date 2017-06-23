@@ -45,7 +45,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 		addChild(luber.spriteNode)
         
         pauseButton = childNode(withName: "pauseButton") as! SKSpriteNode
-		
+		pauseButton.zPosition = 2
 
         playAudios()
         
