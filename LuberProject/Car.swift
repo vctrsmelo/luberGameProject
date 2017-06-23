@@ -24,8 +24,8 @@ class Car: NSObject {
         self.spriteNode = SKSpriteNode(imageNamed: spriteName)
         self.currentLane = currentLane
 		self.spriteNode.position.y = CGFloat(-400)
-		let conx = (spriteNode.texture?.size().height)! - 20
-		let cony = (spriteNode.texture?.size().width)! - 20
+		let conx = (spriteNode.texture?.size().height)! - 40
+		let cony = (spriteNode.texture?.size().width)! - 40
 		let size = CGSize.init(width: cony, height: conx)
 		self.spriteNode.physicsBody = SKPhysicsBody.init(rectangleOf: size)
 		self.spriteNode.physicsBody?.affectedByGravity = false
