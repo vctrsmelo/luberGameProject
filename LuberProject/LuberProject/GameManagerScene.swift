@@ -34,6 +34,7 @@ class GameManagerScene: SKScene {
 		
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
+		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as! SKLabelNode
 		Background.shared.scene = self
 		Background.shared.speed = -15
         
