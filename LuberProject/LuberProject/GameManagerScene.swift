@@ -112,20 +112,18 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 		let currentScore = Background.shared.distance 
 		let userDefaults = UserDefaults.standard
 		
-		let highscore = userDefaults.value(forKey: "highscore") as? Float
+		let highscore = userDefaults.object(forKey: "highscore") as? Float
+		
+		viewController.highscore = String(highscore!)
+		
+		if(highscore! < currentScore){
+			userDefaults.set(currentScore, forKey: "highscore")
+			userDefaults.synchronize()
+			viewController.highscore = String(currentScore)
 			
-		userDefaults.set(currentScore, forKey: "highscore")
-		userDefaults.synchronize()
-		
-		
-		
-			
-		
-		highscoreLabel?.text = String(describing: highscore)
-		
+		}
 		
 		viewController.currentScore = String(currentScore)
-		viewController.highscore = highscoreLabel?.text
 		viewController.performSegue(withIdentifier: "endGame", sender: self)
 		
 	}

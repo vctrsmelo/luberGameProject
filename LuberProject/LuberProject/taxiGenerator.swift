@@ -166,7 +166,9 @@ class taxiGenerator: NSObject {
         }
         
         gameScene.addTaxi(atLane:random ,carYDistance: 0,taxiSpeed: Float(speed))
-        gameScene.addTaxi(atLane:random2 ,carYDistance: 2,taxiSpeed: Float(speed))
+        gameScene.addTaxi(atLane:random2 ,carYDistance: 2,taxiSpeed: Float(speed)-0.5)
+        gameScene.addTaxi(atLane:random2 ,carYDistance: 3,taxiSpeed: Float(speed))
+
     
     }
 
@@ -177,7 +179,7 @@ class taxiGenerator: NSObject {
             random2 = Int((arc4random_uniform(3))+1)
         }
         
-        gameScene.addTaxi(atLane:random ,carYDistance: 1,taxiSpeed: Float(speed))
+        gameScene.addTaxi(atLane:random ,carYDistance: 1,taxiSpeed: Float(speed)-0.25)
         gameScene.addTaxi(atLane:random2 ,carYDistance: 1,taxiSpeed: Float(speed))
 
     
