@@ -24,9 +24,10 @@ class Taxi: Car{
         
         let moveTaxi = SKAction.move(by: CGVector(dx: 0, dy: -2750), duration: speed)
         let removeTaxi = SKAction.run {
-self.scene.removeTaxi(taxi: self)        }
+            self.scene.removeTaxi(taxi: self)
+        }
         let sequence = SKAction.sequence([moveTaxi,removeTaxi])
-        self.spriteNode.run(sequence)
+        self.spriteNode.run(sequence, withKey: "taxiMovement")
         
     }
 }

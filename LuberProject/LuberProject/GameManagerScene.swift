@@ -17,12 +17,9 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 	private var lane1: SKNode!
 	private var lane2: SKNode!
 	private var lane3: SKNode!
-	
 	private let TAXI_SPRITE_NAME: String = "Taxi_test01"
-	
-	private var endGame : Int?
 	private var highscoreLabel : SKLabelNode?
-	
+	private var hasGameOver: Bool!
 	
 	override func sceneDidLoad() {
 		if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "lane3"){
@@ -30,6 +27,8 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 			self.lane2 = lane2
 			self.lane3 = lane3
 		}
+        
+        hasGameOver = false
 	}
 	
 	override func didMove(to view: SKView) {
@@ -51,10 +50,10 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		Background.shared.scene = self
 		Background.shared.speed = -15
 		
-		// TAXI TEST
-        taxiGen = taxiGenerator(scene: self)
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
-		// END TAXI TEST
+        if !hasGameOver {
+            taxiGen = taxiGenerator(scene: self)
+            timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+        }
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
@@ -62,8 +61,6 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		
 		Background.shared.backgroundRoll()
 		Background.shared.backgroundOutOfScreen()
-		
-	
 	}
 	
 	func addTaxi(atLane lane: Int, carYDistance yCars: CGFloat, taxiSpeed: Float){
@@ -87,18 +84,18 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 	func didBegin(_ contact: SKPhysicsContact) {
 	
 		if(contact.bodyA.node == luber.spriteNode || contact.bodyB.node == luber.spriteNode){
+            hasGameOver = true
+            taxiGen?.maxNumberOfTaxi = 0
+            
 			luber.spriteNode.removeAction(forKey: "moveToLeft")
 			luber.spriteNode.removeAction(forKey: "moveToRight")
 			Background.shared.speed = 0
 			
 			for taxi in taxis {
-				taxi.spriteNode.removeAction(forKey: "taxiTest")
+				taxi.spriteNode.removeAction(forKey: "taxiMovement")
 			}
-		
 		}
 	}
-	
-	
 	
 	func endGameState(){
 		
