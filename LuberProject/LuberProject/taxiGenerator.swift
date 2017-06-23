@@ -33,6 +33,8 @@ class taxiGenerator: NSObject {
                 generateRegularTaxi()
             case .hard:
                 generateHardTaxi()
+            case .superhard:
+                generateSuperhardTaxi()
             }
         }
         
@@ -71,6 +73,22 @@ class taxiGenerator: NSObject {
 
 
     }
+    func generateSuperhardTaxi(){
+        let random = Int(arc4random_uniform(4))
+        
+        switch random {
+        case 1:
+            geraImpossivel(speed: 2.25)
+        case 2:
+            geraCompostoQuadruplo(speed: 2.25)
+        case 3:
+            geraCompostoTriplo(speed: 2.25)
+        default:
+            geraCompostoTaxi(speed: 2.25)
+        }
+        
+        
+    }
    
     func checkIfCrowded()->Bool{
         if gameScene.taxis.count > maxNumberOfTaxi{
@@ -97,6 +115,48 @@ class taxiGenerator: NSObject {
 
 
     
+    }
+    func geraImpossivel(speed:Float){
+        let random = Int((arc4random_uniform(3))+1)
+        var random2 = Int((arc4random_uniform(3))+1)
+        var random3 = Int((arc4random_uniform(3))+1)
+        while random==random2 {
+            random2 = Int((arc4random_uniform(3))+1)
+        }
+        
+        while (random2==random3) && (random==random3) {
+            random3 = Int((arc4random_uniform(3))+1)
+        }
+        
+        gameScene.addTaxi(atLane:random ,carYDistance: 0,taxiSpeed: Float(speed))
+        gameScene.addTaxi(atLane:random2 ,carYDistance: 2,taxiSpeed: Float(speed))
+        gameScene.addTaxi(atLane:random3 ,carYDistance: 4,taxiSpeed: Float(speed))
+        gameScene.addTaxi(atLane:random ,carYDistance: 5,taxiSpeed: Float(speed))
+        gameScene.addTaxi(atLane:random2 ,carYDistance: 5,taxiSpeed: Float(speed))
+        gameScene.addTaxi(atLane:random3 ,carYDistance: 6,taxiSpeed: Float(speed))
+
+
+
+    
+    }
+    
+    func geraCompostoQuadruplo(speed:Float){
+        let random = Int((arc4random_uniform(3))+1)
+        var random2 = Int((arc4random_uniform(3))+1)
+        var random3 = Int((arc4random_uniform(3))+1)
+        while random==random2 {
+            random2 = Int((arc4random_uniform(3))+1)
+        }
+        
+        while (random2==random3) && (random==random3) {
+            random3 = Int((arc4random_uniform(3))+1)
+        }
+        
+        gameScene.addTaxi(atLane:random ,carYDistance: 0,taxiSpeed: Float(speed))
+        gameScene.addTaxi(atLane:random2 ,carYDistance: 2,taxiSpeed: Float(speed))
+        gameScene.addTaxi(atLane:random3 ,carYDistance: 4,taxiSpeed: Float(speed))
+        gameScene.addTaxi(atLane:random ,carYDistance: 5,taxiSpeed: Float(speed))
+        
     }
     func geraCompostoTaxi(speed:Float){
         let random = Int((arc4random_uniform(3))+1)
@@ -157,5 +217,6 @@ enum difficulty: Float {
     case easy = 0.250
     case regular = 0.750
     case hard = 1
+    case superhard = 2
     
 }
