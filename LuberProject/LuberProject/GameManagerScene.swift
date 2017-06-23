@@ -15,7 +15,6 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     var timer = Timer()
     var distance : Float = 0
 	public var viewController : GameSceneViewController!
-	
     private var taxiGen : taxiGenerator?
 	private var lane1: SKNode!
 	private var lane2: SKNode!
@@ -23,7 +22,6 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	private let TAXI_SPRITE_NAME: String = "Taxi_test01"
     private var backgroundMusic: SKAudioNode!
 	public var highscoreLabel : SKLabelNode?
-	private var highscoreLabel : SKLabelNode?
     private var pauseButton: SKSpriteNode!
     private var isPausedGame: Bool!
 	private var hasGameOver: Bool!
