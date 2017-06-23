@@ -55,7 +55,7 @@ class GameManagerScene: SKScene {
             Background.shared.speed = 0
             
             for taxi in taxis {
-                taxi.spriteNode.removeAction(forKey: taxiTest")
+                taxi.spriteNode.removeAction(forKey: "taxiTest")
             }
         }
     }
