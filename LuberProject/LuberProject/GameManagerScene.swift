@@ -21,6 +21,8 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	private var lane2: SKNode!
 	private var lane3: SKNode!
 	private let TAXI_SPRITE_NAME: String = "Taxi_test01"
+    
+    private var backgroundMusic: SKAudioNode!
 	
 	public var highscoreLabel : SKLabelNode?
 	
@@ -100,7 +102,9 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 			for taxi in taxis {
 				taxi.spriteNode.removeAction(forKey: "taxiMovement")
 			}
+
             
+            backgroundMusic.run(SKAction.stop())
 			playCrashAudio()
 			endGameState()
             
@@ -142,13 +146,11 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     
     func playAudios(){
         
-        let sound = SKAction.playSoundFileNamed("backgroundSong.m4a", waitForCompletion: true)
-
-        let loopSound = SKAction.repeatForever(sound)
-
-        self.run(loopSound)
-        //self.run(loopCarSound)
-    
+        let bg = SKAudioNode(fileNamed: "backgroundSong.m4a")
+        bg.autoplayLooped = true
+        addChild(bg)
+        backgroundMusic = bg
+        
     }
     
     func playCrashAudio(){
