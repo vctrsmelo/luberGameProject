@@ -20,6 +20,8 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 	private var lane3: SKNode!
 	private let TAXI_SPRITE_NAME: String = "Taxi_test01"
 	private var highscoreLabel : SKLabelNode?
+    private var pauseButton: SKSpriteNode!
+    private var isPausedGame: Bool!
 	private var hasGameOver: Bool!
 	
 	override func sceneDidLoad() {
@@ -29,6 +31,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 			self.lane3 = lane3
 		}
         
+        isPausedGame = false
         hasGameOver = false
 	}
 	
@@ -38,6 +41,8 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		luber = Luber(spriteName: "Car01_test02", currentLane: 2)
 		luber.addPlayerSwipeRecognizer(to: self.view!)
 		addChild(luber.spriteNode)
+        
+        pauseButton = childNode(withName: "pauseButton") as! SKSpriteNode
 		
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
@@ -58,6 +63,25 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		Background.shared.backgroundOutOfScreen()
 	}
 	
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        if pauseButton.contains(touch.location(in: self)) {
+            updatePause()
+        }
+    }
+    
+    func updatePause() {
+        isPausedGame = !isPausedGame
+        
+        if isPausedGame {
+            timer.invalidate()
+            self.view?.isPaused = true
+        } else {
+            timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+            self.view?.isPaused = false
+        }
+    }
+    
 	func addTaxi(atLane lane: Int, carYDistance yCars: CGFloat, taxiSpeed: Float){
 		let taxi = Taxi(spriteName: TAXI_SPRITE_NAME, currentLane: lane, speed: taxiSpeed, scene: self)
 		let taxiHeight = taxi.spriteNode.frame.size.height
