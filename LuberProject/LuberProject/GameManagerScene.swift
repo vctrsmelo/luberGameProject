@@ -29,8 +29,7 @@ class GameManagerScene: SKScene {
         
         // TAXI TEST
       taxiGen = taxiGenerator(scene: self)
-      taxiGen?.trytoGenerate()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
 
         // END TAXI TEST
     }
@@ -49,10 +48,7 @@ class GameManagerScene: SKScene {
 		Background.shared.speed = -15
         
         // TAXI TEST
-        addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
-        let moveTaxi = SKAction.move(by: CGVector(dx: 0, dy: -1500), duration: 5)
-        let taxi: Taxi = taxis[0]
-        taxi.spriteNode.run(moveTaxi, withKey: "taxiTest")
+       
         // END TAXI TEST
     }
     
@@ -70,9 +66,16 @@ class GameManagerScene: SKScene {
             }
         }
     }
+    func removeTaxi(taxi:Taxi){
+        for i  in 0...taxis.count{
+            if (taxi==taxis[i]){taxis.remove(at: i)
+            break}
+        }
+    
+    }
     
     func addTaxi(atLane lane: Int, carYDistance yCars: CGFloat, taxiSpeed: Float){
-        let taxi = Taxi(spriteName: TAXI_SPRITE_NAME, currentLane: lane, speed: taxiSpeed)
+        let taxi = Taxi(spriteName: TAXI_SPRITE_NAME, currentLane: lane, speed: taxiSpeed,scene: self)
         let taxiHeight = taxi.spriteNode.frame.size.height
         
         var laneX = lane1.frame.origin.x
