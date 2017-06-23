@@ -69,18 +69,16 @@ class GameManagerScene: SKScene {
 		Background.shared.backgroundOutOfScreen()
 		
 		
-		if(Background.shared.distance > Float(endGame)){
-			endGameState()
-			
-		
-		
-		}
+//		if(Background.shared.distance > Float(endGame)){
+//			endGameState()
+//			
+//		
+//		
+//		}
 		
 	}
 	
 	func endGameState(){
-		
-		
 		
 		let currentScore = Background.shared.distance as! Float
 		let userDefaults = UserDefaults.standard
