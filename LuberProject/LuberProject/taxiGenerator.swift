@@ -1,6 +1,12 @@
+////
+////  taxiGenerator.swift
+////  LuberProject
+////
+////  Created by Bruno da Silva Dorneles on 22/06/17.
+////  Copyright © 2017 Victor S Melo. All rights reserved.
+////
 //
-//  taxiGenerator.swift
-//  LuberProject
+//import UIKit
 //
 //  Created by Bruno da Silva Dorneles on 22/06/17.
 //  Copyright © 2017 Victor S Melo. All rights reserved.
