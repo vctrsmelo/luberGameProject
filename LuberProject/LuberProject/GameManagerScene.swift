@@ -39,21 +39,12 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		luber.addPlayerSwipeRecognizer(to: self.view!)
 		addChild(luber.spriteNode)
 		
-		if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "//lane3"){
-			self.lane1 = lane1
-			self.lane2 = lane2
-			self.lane3 = lane3
-		}
-		
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
 		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as? SKLabelNode
 		Background.shared.scene = self
 		Background.shared.speed = -15
 		
-		// TAXI TEST
-     
-		// END TAXI TEST
         if !hasGameOver {
             taxiGen = taxiGenerator(scene: self)
             timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
@@ -82,8 +73,6 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		self.taxis.append(taxi)
 		self.addChild(taxi.spriteNode)
 	}
-	
-	
 	
 	func didBegin(_ contact: SKPhysicsContact) {
 	
