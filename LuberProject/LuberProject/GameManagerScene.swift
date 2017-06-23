@@ -25,13 +25,6 @@ class GameManagerScene: SKScene {
             self.lane2 = lane2
             self.lane3 = lane3
         }
-        
-        // TAXI TEST
-        addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
-        let moveTaxi = SKAction.move(by: CGVector(dx: 0, dy: -1000), duration: 5)
-        let taxi: Taxi = taxis[0]
-        taxi.spriteNode.run(moveTaxi)
-        // END TAXI TEST
     }
     
     override func didMove(to view: SKView) {
@@ -43,6 +36,13 @@ class GameManagerScene: SKScene {
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
 		Background.shared.scene = self
 		Background.shared.speed = -15
+        
+        // TAXI TEST
+        addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
+        let moveTaxi = SKAction.move(by: CGVector(dx: 0, dy: -1500), duration: 5)
+        let taxi: Taxi = taxis[0]
+        taxi.spriteNode.run(moveTaxi)
+        // END TAXI TEST
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -76,9 +76,9 @@ class GameManagerScene: SKScene {
         let y = luber.spriteNode.position.y
         
         for taxi in taxis {
-            if x > taxi.spriteNode.position.x + taxi.spriteNode.size.width && x < taxi.spriteNode.position.x - taxi.spriteNode.size.width {
-                if y > taxi.spriteNode.position.y + taxi.spriteNode.size.height && y < taxi.spriteNode.position.y - taxi.spriteNode.size.height {
-                    print("\nCOLIDIU\n\n")
+            if x > (taxi.spriteNode.position.x - taxi.spriteNode.size.width) && x < (taxi.spriteNode.position.x + taxi.spriteNode.size.width) {
+                if y > (taxi.spriteNode.position.y - taxi.spriteNode.size.height) && y < (taxi.spriteNode.position.y + taxi.spriteNode.size.height) {
+                    print("\nCOLIDIU\n")
                     return true
                 }
             }
