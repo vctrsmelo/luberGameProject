@@ -22,4 +22,12 @@ class Luber: Car {
         swipeRight.addTarget(self, action: #selector(moveToRight))
         view!.addGestureRecognizer(swipeRight)
     }
+    
+    func disablePlayerSwipeRecognizer(to view: SKView!) {
+        for gestureRecognizer in view!.gestureRecognizers! {
+            if let g: UIGestureRecognizer = gestureRecognizer as UIGestureRecognizer! {
+                g.isEnabled = false
+            }
+        }
+    }
 }

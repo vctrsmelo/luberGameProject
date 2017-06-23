@@ -40,13 +40,15 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	override func didMove(to view: SKView) {
 		physicsWorld.contactDelegate = self
 		
-		luber = Luber(spriteName: "Car01_test02", currentLane: 2)
-		luber.addPlayerSwipeRecognizer(to: self.view!)
+        luber = Luber(spriteName: "Car01_test02", currentLane: 2)
+        if !isPausedGame {
+            luber.addPlayerSwipeRecognizer(to: self.view!)
+        }
 		addChild(luber.spriteNode)
         
         pauseButton = childNode(withName: "pauseButton") as! SKSpriteNode
 		pauseButton.zPosition = 2
-
+        
         playAudios()
         
 		if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "//lane3"){
@@ -85,9 +87,11 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
         isPausedGame = !isPausedGame
         
         if isPausedGame {
+            luber.disablePlayerSwipeRecognizer(to: self.view!)
             timer.invalidate()
             self.view?.isPaused = true
         } else {
+            luber.addPlayerSwipeRecognizer(to: self.view!)
             timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
             self.view?.isPaused = false
         }
