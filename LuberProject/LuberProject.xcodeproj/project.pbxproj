@@ -22,6 +22,7 @@
 		EE015F9F1EFC37BE00027662 /* Taxi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015F9E1EFC37BE00027662 /* Taxi.swift */; };
 		EE015FA11EFC37D800027662 /* Luber.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015FA01EFC37D800027662 /* Luber.swift */; };
 		EE015FA31EFC37EE00027662 /* ScenarioBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015FA21EFC37EE00027662 /* ScenarioBackground.swift */; };
+		EE0F16991EFD9D0700E5F358 /* backgroundSong.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EE0F16981EFD9D0700E5F358 /* backgroundSong.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		EE015F9E1EFC37BE00027662 /* Taxi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Taxi.swift; sourceTree = "<group>"; };
 		EE015FA01EFC37D800027662 /* Luber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Luber.swift; sourceTree = "<group>"; };
 		EE015FA21EFC37EE00027662 /* ScenarioBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioBackground.swift; sourceTree = "<group>"; };
+		EE0F16981EFD9D0700E5F358 /* backgroundSong.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = backgroundSong.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		EE015F821EFC370900027662 /* LuberProject */ = {
 			isa = PBXGroup;
 			children = (
+				EE0F16911EFD97D700E5F358 /* Audios */,
 				EE015F9D1EFC379F00027662 /* Core Classes */,
 				EE015F831EFC370900027662 /* AppDelegate.swift */,
 				EE015F851EFC370900027662 /* GameManagerScene.sks */,
@@ -100,6 +103,14 @@
 				EE015F891EFC370900027662 /* GameManagerScene.swift */,
 			);
 			name = "Core Classes";
+			sourceTree = "<group>";
+		};
+		EE0F16911EFD97D700E5F358 /* Audios */ = {
+			isa = PBXGroup;
+			children = (
+				EE0F16981EFD9D0700E5F358 /* backgroundSong.m4a */,
+			);
+			name = Audios;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,7 +145,7 @@
 				TargetAttributes = {
 					EE015F7F1EFC370900027662 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = VXAGBDYAT9;
+						DevelopmentTeam = Y93HUJS49V;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -167,6 +178,7 @@
 				EE015F911EFC370900027662 /* Assets.xcassets in Resources */,
 				EE015F941EFC370900027662 /* LaunchScreen.storyboard in Resources */,
 				EE015F881EFC370900027662 /* Actions.sks in Resources */,
+				EE0F16991EFD9D0700E5F358 /* backgroundSong.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +321,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VXAGBDYAT9;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.LuberProject;
@@ -322,7 +334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VXAGBDYAT9;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.LuberProject;

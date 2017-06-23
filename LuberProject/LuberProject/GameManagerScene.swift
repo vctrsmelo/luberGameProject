@@ -15,12 +15,15 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     var timer = Timer()
     var distance : Float = 0
 	public var viewController : GameSceneViewController!
+	
     private var taxiGen : taxiGenerator?
 	private var lane1: SKNode!
 	private var lane2: SKNode!
 	private var lane3: SKNode!
 	private let TAXI_SPRITE_NAME: String = "Taxi_test01"
-	private var highscoreLabel : SKLabelNode?
+	
+	public var highscoreLabel : SKLabelNode?
+	
 	private var hasGameOver: Bool!
 	
 	override func sceneDidLoad() {
@@ -40,6 +43,15 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 		luber.addPlayerSwipeRecognizer(to: self.view!)
 		addChild(luber.spriteNode)
 		
+
+        playAudios()
+        
+		if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "//lane3"){
+			self.lane1 = lane1
+			self.lane2 = lane2
+			self.lane3 = lane3
+		}
+
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
 		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as? SKLabelNode
@@ -86,32 +98,32 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 			Background.shared.speed = 0
 			
 			for taxi in taxis {
-				taxi.spriteNode.removeAction(forKey: "taxiTest")
-				
+				taxi.spriteNode.removeAction(forKey: "taxiMovement")
 			}
 			
 			endGameState()
 		}
 	}
 	
-
-	
 	func endGameState(){
 		
 		let currentScore = Background.shared.distance 
 		let userDefaults = UserDefaults.standard
 		
-		if let highscore = userDefaults.value(forKey: "highscore") as? Float{
+		let highscore = userDefaults.value(forKey: "highscore") as? Float
 			
-			if(Float(highscore) < currentScore){
-				userDefaults.set(currentScore, forKey: "highscore")
-				userDefaults.synchronize()
-				
-			}
-			
-			highscoreLabel?.text = String(highscore)
-		}
+		userDefaults.set(currentScore, forKey: "highscore")
+		userDefaults.synchronize()
 		
+		
+		
+			
+		
+		highscoreLabel?.text = String(describing: highscore)
+		
+		
+		viewController.currentScore = String(currentScore)
+		viewController.highscore = highscoreLabel?.text
 		viewController.performSegue(withIdentifier: "endGame", sender: self)
 		
 	}
@@ -126,7 +138,18 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
                 break}
         }
 	
-}
+    }
+    
+    func playAudios(){
+        
+        let sound = SKAction.playSoundFileNamed("backgroundSong.m4a", waitForCompletion: true)
+
+        let loopSound = SKAction.repeatForever(sound)
+
+        self.run(loopSound)
+        //self.run(loopCarSound)
+    
+    }
 }
 
 

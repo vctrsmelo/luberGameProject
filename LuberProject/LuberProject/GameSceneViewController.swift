@@ -11,6 +11,9 @@ import SpriteKit
 
 class GameSceneViewController: UIViewController {
 
+	public var highscore : String!
+	public var currentScore : String!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -40,7 +43,9 @@ class GameSceneViewController: UIViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "endGame"{
 			var destination	= segue.destination as! EndGameViewController
-			//Data has to be a variable name in your RandomViewController
+			destination.currentScoreString = currentScore
+			destination.highscoreString = highscore
+			
 		}
 	}
 	
