@@ -9,16 +9,20 @@
 import SpriteKit
 import GameplayKit
 
-class GameManagerScene: SKScene, SKPhysicsContactDelegate {
+class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	var luber: Luber!
 	var taxis: [Taxi] = []
     var timer = Timer()
-    var distance :Float = 0.0
+    var distance : Float = 0
+	public var viewController : GameSceneViewController!
+	
     private var taxiGen : taxiGenerator?
 	private var lane1: SKNode!
 	private var lane2: SKNode!
 	private var lane3: SKNode!
 	private let TAXI_SPRITE_NAME: String = "Taxi_test01"
+    private var backgroundMusic: SKAudioNode!
+	public var highscoreLabel : SKLabelNode?
 	private var highscoreLabel : SKLabelNode?
     private var pauseButton: SKSpriteNode!
     private var isPausedGame: Bool!
@@ -44,15 +48,24 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
         
         pauseButton = childNode(withName: "pauseButton") as! SKSpriteNode
 		
+
+        playAudios()
+        
+		if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "//lane3"){
+			self.lane1 = lane1
+			self.lane2 = lane2
+			self.lane3 = lane3
+		}
+
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
 		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as? SKLabelNode
 		Background.shared.scene = self
-		Background.shared.speed = -15
+		Background.shared.speed = -25
 		
         if !hasGameOver {
             taxiGen = taxiGenerator(scene: self)
-            timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
         }
 	}
 	
@@ -111,6 +124,12 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 			for taxi in taxis {
 				taxi.spriteNode.removeAction(forKey: "taxiMovement")
 			}
+
+            
+            backgroundMusic.run(SKAction.stop())
+			playCrashAudio()
+			endGameState()
+            
 		}
 	}
 	
@@ -119,16 +138,19 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 		let currentScore = Background.shared.distance 
 		let userDefaults = UserDefaults.standard
 		
-		if let highscore = userDefaults.value(forKey: "highscore") as? Float{
+		let highscore = userDefaults.object(forKey: "highscore") as? Float
+		
+		viewController.highscore = String(highscore!)
+		
+		if(highscore! < currentScore){
+			userDefaults.set(currentScore, forKey: "highscore")
+			userDefaults.synchronize()
+			viewController.highscore = String(currentScore)
 			
-			if(Float(highscore) < currentScore){
-				userDefaults.set(currentScore, forKey: "highscore")
-				userDefaults.synchronize()
-				
-			}
-			
-			highscoreLabel?.text = String(highscore)
 		}
+		
+		viewController.currentScore = String(currentScore)
+		viewController.performSegue(withIdentifier: "endGame", sender: self)
 		
 	}
     func generateTaxi(){
@@ -142,7 +164,22 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate {
                 break}
         }
 	
-}
+    }
+    
+    func playAudios(){
+        
+        let bg = SKAudioNode(fileNamed: "backgroundSong.m4a")
+        bg.autoplayLooped = true
+        addChild(bg)
+        backgroundMusic = bg
+        
+    }
+    
+    func playCrashAudio(){
+        
+        self.run(SKAction.playSoundFileNamed("crash.m4a", waitForCompletion: true))
+        
+    }
 }
 
 

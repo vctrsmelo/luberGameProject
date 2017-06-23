@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		152FC3031EFC3CF600901F51 /* taxiGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FC3021EFC3CF600901F51 /* taxiGenerator.swift */; };
 		5B200CCA1EFC5180008759F4 /* background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B200CC91EFC5180008759F4 /* background.swift */; };
+		5B81D5901EFD9DAE00ECEC4B /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B81D58F1EFD9DAE00ECEC4B /* EndGameViewController.swift */; };
+		5B81D5921EFD9F0C00ECEC4B /* GameSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B81D5911EFD9F0C00ECEC4B /* GameSceneViewController.swift */; };
 		EE015F841EFC370900027662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015F831EFC370900027662 /* AppDelegate.swift */; };
 		EE015F861EFC370900027662 /* GameManagerScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EE015F851EFC370900027662 /* GameManagerScene.sks */; };
 		EE015F881EFC370900027662 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = EE015F871EFC370900027662 /* Actions.sks */; };
 		EE015F8A1EFC370900027662 /* GameManagerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015F891EFC370900027662 /* GameManagerScene.swift */; };
-		EE015F8C1EFC370900027662 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015F8B1EFC370900027662 /* GameViewController.swift */; };
 		EE015F8F1EFC370900027662 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE015F8D1EFC370900027662 /* Main.storyboard */; };
 		EE015F911EFC370900027662 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE015F901EFC370900027662 /* Assets.xcassets */; };
 		EE015F941EFC370900027662 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE015F921EFC370900027662 /* LaunchScreen.storyboard */; };
@@ -21,17 +22,20 @@
 		EE015F9F1EFC37BE00027662 /* Taxi.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015F9E1EFC37BE00027662 /* Taxi.swift */; };
 		EE015FA11EFC37D800027662 /* Luber.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015FA01EFC37D800027662 /* Luber.swift */; };
 		EE015FA31EFC37EE00027662 /* ScenarioBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015FA21EFC37EE00027662 /* ScenarioBackground.swift */; };
+		EE0F16991EFD9D0700E5F358 /* backgroundSong.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EE0F16981EFD9D0700E5F358 /* backgroundSong.m4a */; };
+		EE0F16A71EFDB0A200E5F358 /* crash.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EE0F16A61EFDB0A200E5F358 /* crash.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		152FC3021EFC3CF600901F51 /* taxiGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taxiGenerator.swift; sourceTree = "<group>"; };
 		5B200CC91EFC5180008759F4 /* background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = background.swift; sourceTree = "<group>"; };
+		5B81D58F1EFD9DAE00ECEC4B /* EndGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameViewController.swift; sourceTree = "<group>"; };
+		5B81D5911EFD9F0C00ECEC4B /* GameSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneViewController.swift; sourceTree = "<group>"; };
 		EE015F801EFC370900027662 /* LuberProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuberProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE015F831EFC370900027662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE015F851EFC370900027662 /* GameManagerScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameManagerScene.sks; sourceTree = "<group>"; };
 		EE015F871EFC370900027662 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		EE015F891EFC370900027662 /* GameManagerScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerScene.swift; sourceTree = "<group>"; };
-		EE015F8B1EFC370900027662 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		EE015F8E1EFC370900027662 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE015F901EFC370900027662 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE015F931EFC370900027662 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +44,8 @@
 		EE015F9E1EFC37BE00027662 /* Taxi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Taxi.swift; sourceTree = "<group>"; };
 		EE015FA01EFC37D800027662 /* Luber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Luber.swift; sourceTree = "<group>"; };
 		EE015FA21EFC37EE00027662 /* ScenarioBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioBackground.swift; sourceTree = "<group>"; };
+		EE0F16981EFD9D0700E5F358 /* backgroundSong.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = backgroundSong.m4a; sourceTree = "<group>"; };
+		EE0F16A61EFDB0A200E5F358 /* crash.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = crash.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,13 +78,15 @@
 		EE015F821EFC370900027662 /* LuberProject */ = {
 			isa = PBXGroup;
 			children = (
+				EE0F16911EFD97D700E5F358 /* Audios */,
 				EE015F9D1EFC379F00027662 /* Core Classes */,
 				EE015F831EFC370900027662 /* AppDelegate.swift */,
 				EE015F851EFC370900027662 /* GameManagerScene.sks */,
 				5B200CC91EFC5180008759F4 /* background.swift */,
 				EE015F871EFC370900027662 /* Actions.sks */,
-				EE015F8B1EFC370900027662 /* GameViewController.swift */,
+				5B81D58F1EFD9DAE00ECEC4B /* EndGameViewController.swift */,
 				EE015F8D1EFC370900027662 /* Main.storyboard */,
+				5B81D5911EFD9F0C00ECEC4B /* GameSceneViewController.swift */,
 				EE015F901EFC370900027662 /* Assets.xcassets */,
 				EE015F921EFC370900027662 /* LaunchScreen.storyboard */,
 				EE015F951EFC370900027662 /* Info.plist */,
@@ -97,6 +105,15 @@
 				EE015F891EFC370900027662 /* GameManagerScene.swift */,
 			);
 			name = "Core Classes";
+			sourceTree = "<group>";
+		};
+		EE0F16911EFD97D700E5F358 /* Audios */ = {
+			isa = PBXGroup;
+			children = (
+				EE0F16981EFD9D0700E5F358 /* backgroundSong.m4a */,
+				EE0F16A61EFDB0A200E5F358 /* crash.m4a */,
+			);
+			name = Audios;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,7 +148,7 @@
 				TargetAttributes = {
 					EE015F7F1EFC370900027662 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = VXAGBDYAT9;
+						DevelopmentTeam = Y93HUJS49V;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -164,6 +181,8 @@
 				EE015F911EFC370900027662 /* Assets.xcassets in Resources */,
 				EE015F941EFC370900027662 /* LaunchScreen.storyboard in Resources */,
 				EE015F881EFC370900027662 /* Actions.sks in Resources */,
+				EE0F16A71EFDB0A200E5F358 /* crash.m4a in Resources */,
+				EE0F16991EFD9D0700E5F358 /* backgroundSong.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,8 +195,9 @@
 			files = (
 				5B200CCA1EFC5180008759F4 /* background.swift in Sources */,
 				EE015FA11EFC37D800027662 /* Luber.swift in Sources */,
+				5B81D5901EFD9DAE00ECEC4B /* EndGameViewController.swift in Sources */,
+				5B81D5921EFD9F0C00ECEC4B /* GameSceneViewController.swift in Sources */,
 				EE015F8A1EFC370900027662 /* GameManagerScene.swift in Sources */,
-				EE015F8C1EFC370900027662 /* GameViewController.swift in Sources */,
 				152FC3031EFC3CF600901F51 /* taxiGenerator.swift in Sources */,
 				EE015F9F1EFC37BE00027662 /* Taxi.swift in Sources */,
 				EE015FA31EFC37EE00027662 /* ScenarioBackground.swift in Sources */,
@@ -305,7 +325,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VXAGBDYAT9;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.LuberProject;
@@ -318,7 +338,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = VXAGBDYAT9;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.LuberProject;

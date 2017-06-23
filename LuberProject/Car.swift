@@ -33,6 +33,7 @@ class Car: NSObject {
 	}
     
     func moveToLeft() {
+        
         if !isMoving {
             isMoving = true
             
@@ -50,6 +51,7 @@ class Car: NSObject {
                 let sequence = SKAction.sequence([group, rotateBack])
                 
                 spriteNode.run(sequence, withKey: "moveToLeft")
+                
             }
             
             isMoving = false
@@ -74,6 +76,7 @@ class Car: NSObject {
                 let sequence = SKAction.sequence([group, rotateBack])
                 
                 spriteNode.run(sequence, withKey: "moveToRight")
+                
             }
             
             isMoving = false
