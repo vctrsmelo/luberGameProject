@@ -100,8 +100,10 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 			for taxi in taxis {
 				taxi.spriteNode.removeAction(forKey: "taxiMovement")
 			}
-			
+            
+			playCrashAudio()
 			endGameState()
+            
 		}
 	}
 	
@@ -149,6 +151,12 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
         self.run(loopSound)
         //self.run(loopCarSound)
     
+    }
+    
+    func playCrashAudio(){
+        
+        self.run(SKAction.playSoundFileNamed("crash.m4a", waitForCompletion: true))
+        
     }
 }
 
