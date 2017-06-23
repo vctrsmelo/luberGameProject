@@ -24,7 +24,13 @@ class Car: NSObject {
         self.spriteNode = SKSpriteNode(imageNamed: spriteName)
         self.currentLane = currentLane
 		self.spriteNode.position.y = CGFloat(-400)
-    }
+		let conx = (spriteNode.texture?.size().height)! - 40
+		let cony = (spriteNode.texture?.size().width)! - 40
+		let size = CGSize.init(width: cony, height: conx)
+		self.spriteNode.physicsBody = SKPhysicsBody.init(rectangleOf: size)
+		self.spriteNode.physicsBody?.affectedByGravity = false
+		self.spriteNode.physicsBody?.contactTestBitMask = 0x00000001
+	}
     
     func moveToLeft() {
         if !isMoving {
@@ -33,7 +39,7 @@ class Car: NSObject {
             if currentLane > 1 {
                 currentLane -= 1
                 
-                let move = SKAction.move(by: CGVector(dx: -laneSize, dy: 0),
+                let move = SKAction.move(to: CGPoint(x: (currentLane - 2) * laneSize, y: Int(spriteNode.position.y)),
                                          duration: changeLaneSpeed)
                 let rotate = SKAction.rotate(byAngle: CGFloat(GLKMathDegreesToRadians(30.0)),
                                              duration: changeLaneSpeed/2)
@@ -45,6 +51,7 @@ class Car: NSObject {
                 
                 spriteNode.run(sequence, withKey: "moveToLeft")
             }
+            
             isMoving = false
         }
     }
@@ -56,7 +63,8 @@ class Car: NSObject {
             if currentLane < 3 {
                 currentLane += 1
                 
-                let move = SKAction.move(by: CGVector(dx: laneSize, dy: 0), duration: changeLaneSpeed)
+                let move = SKAction.move(to: CGPoint(x: (currentLane - 2) * laneSize, y: Int(spriteNode.position.y)),
+                                         duration: changeLaneSpeed)
                 let rotate = SKAction.rotate(byAngle: CGFloat(GLKMathDegreesToRadians(-30.0)),
                                              duration: changeLaneSpeed/2)
                 let rotateBack = SKAction.rotate(toAngle: CGFloat(GLKMathDegreesToRadians(0.0)),
@@ -67,8 +75,8 @@ class Car: NSObject {
                 
                 spriteNode.run(sequence, withKey: "moveToRight")
             }
+            
             isMoving = false
         }
     }
-
 }

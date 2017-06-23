@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameManagerScene: SKScene {
+class GameManagerScene: SKScene, SKPhysicsContactDelegate {
 	var luber: Luber!
 	var taxis: [Taxi] = []
     var timer = Timer()
@@ -18,12 +18,9 @@ class GameManagerScene: SKScene {
 	private var lane1: SKNode!
 	private var lane2: SKNode!
 	private var lane3: SKNode!
-	
-	private let TAXI_SPRITE_NAME: String = "Car01_test02"
-	
-	private var endGame : Int?
+	private let TAXI_SPRITE_NAME: String = "Taxi_test01"
 	private var highscoreLabel : SKLabelNode?
-	
+	private var hasGameOver: Bool!
 	
 	override func sceneDidLoad() {
 		if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "lane3"){
@@ -31,9 +28,13 @@ class GameManagerScene: SKScene {
 			self.lane2 = lane2
 			self.lane3 = lane3
 		}
+        
+        hasGameOver = false
 	}
 	
 	override func didMove(to view: SKView) {
+		physicsWorld.contactDelegate = self
+		
 		luber = Luber(spriteName: "Car01_test02", currentLane: 2)
 		luber.addPlayerSwipeRecognizer(to: self.view!)
 		addChild(luber.spriteNode)
@@ -61,16 +62,6 @@ class GameManagerScene: SKScene {
 		distance = Background.shared.distance
 		Background.shared.backgroundRoll()
 		Background.shared.backgroundOutOfScreen()
-		
-		if hasColision() {
-			luber.spriteNode.removeAction(forKey: "moveToLeft")
-			luber.spriteNode.removeAction(forKey: "moveToRight")
-			Background.shared.speed = 0
-			
-			for taxi in taxis {
-				taxi.spriteNode.removeAction(forKey: "taxiTest")
-			}
-		}
 	}
 	
 	func addTaxi(atLane lane: Int, carYDistance yCars: CGFloat, taxiSpeed: Float){
@@ -89,20 +80,22 @@ class GameManagerScene: SKScene {
 		self.addChild(taxi.spriteNode)
 	}
 	
-	func hasColision() -> Bool {
-		let x = luber.spriteNode.position.x
-		let y = luber.spriteNode.position.y
-		
-		for taxi in taxis {
-			if x > (taxi.spriteNode.position.x - taxi.spriteNode.size.width) && x < (taxi.spriteNode.position.x + taxi.spriteNode.size.width) {
-				if y > (taxi.spriteNode.position.y - taxi.spriteNode.size.height) && y < (taxi.spriteNode.position.y + taxi.spriteNode.size.height) {
-					print("\nCOLIDIU\n")
-					return true
-				}
+	
+	
+	func didBegin(_ contact: SKPhysicsContact) {
+	
+		if(contact.bodyA.node == luber.spriteNode || contact.bodyB.node == luber.spriteNode){
+            hasGameOver = true
+            taxiGen?.maxNumberOfTaxi = 0
+            
+			luber.spriteNode.removeAction(forKey: "moveToLeft")
+			luber.spriteNode.removeAction(forKey: "moveToRight")
+			Background.shared.speed = 0
+			
+			for taxi in taxis {
+				taxi.spriteNode.removeAction(forKey: "taxiMovement")
 			}
 		}
-		
-		return false
 	}
 	
 	func endGameState(){
