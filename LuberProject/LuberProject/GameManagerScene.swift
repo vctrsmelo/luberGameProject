@@ -41,10 +41,6 @@ class GameManagerScene: SKScene {
 			self.lane2 = lane2
 			self.lane3 = lane3
 		}
-		//addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
-		
-		endGame = Int(arc4random_uniform(2) + 1)
-		
 		
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
@@ -61,8 +57,7 @@ class GameManagerScene: SKScene {
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
-		
-		self.highscoreLabel = self.childNode(withName: "highscore") as! SKLabelNode
+		self.highscoreLabel = self.childNode(withName: "highscore") as? SKLabelNode
 		
 		Background.shared.backgroundRoll()
 		Background.shared.backgroundOutOfScreen()
@@ -112,7 +107,7 @@ class GameManagerScene: SKScene {
 	
 	func endGameState(){
 		
-		let currentScore = Background.shared.distance as! Float
+		let currentScore = Background.shared.distance 
 		let userDefaults = UserDefaults.standard
 		
 		if let highscore = userDefaults.value(forKey: "highscore") as? Float{
