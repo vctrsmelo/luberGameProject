@@ -13,9 +13,7 @@ class Car: NSObject {
     
     var spriteNode: SKSpriteNode
     var currentLane: Int
-    var isMoving: Bool = false
-    
-    private var size = CGSize(width: 200, height: 400)
+    private var isMoving: Bool = false
     
     let laneSize = 189
     let changeLaneSpeed = 0.2
@@ -24,6 +22,14 @@ class Car: NSObject {
         self.spriteNode = SKSpriteNode(imageNamed: spriteName)
         self.currentLane = currentLane
 		self.spriteNode.position.y = CGFloat(-400)
+    }
+    
+    func isMovingToOtherLane() -> Bool {
+        if (spriteNode.action(forKey: "moveToLeft") == nil) && (spriteNode.action(forKey: "moveToRight") == nil) {
+            isMoving = false
+        }
+        
+        return isMoving
     }
     
     func moveToLeft() {
@@ -45,7 +51,6 @@ class Car: NSObject {
                 
                 spriteNode.run(sequence, withKey: "moveToLeft")
             }
-            isMoving = false
         }
     }
     
@@ -67,8 +72,6 @@ class Car: NSObject {
                 
                 spriteNode.run(sequence, withKey: "moveToRight")
             }
-            isMoving = false
         }
     }
-
 }

@@ -26,7 +26,7 @@ class Taxi: Car{
         let removeTaxi = SKAction.run {
 self.scene.removeTaxi(taxi: self)        }
         let sequence = SKAction.sequence([moveTaxi,removeTaxi])
-        self.spriteNode.run(sequence)
+        self.spriteNode.run(sequence, withKey: "taxiMove")
         
     }
 }

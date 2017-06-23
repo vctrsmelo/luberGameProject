@@ -20,9 +20,9 @@ class GameManagerScene: SKScene {
 	
 	private let TAXI_SPRITE_NAME: String = "Car01_test02"
 	
-	private var endGame : Int?
 	private var highscoreLabel : SKLabelNode?
-	
+    private let collisionTolerance: CGFloat = 0.8
+	private var hasGameOver = false
 	
 	override func sceneDidLoad() {
 		if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "lane3"){
@@ -37,22 +37,16 @@ class GameManagerScene: SKScene {
 		luber.addPlayerSwipeRecognizer(to: self.view!)
 		addChild(luber.spriteNode)
 		
-		if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "//lane3"){
-			self.lane1 = lane1
-			self.lane2 = lane2
-			self.lane3 = lane3
-		}
-		
-		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
-		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
-		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as? SKLabelNode
-		Background.shared.scene = self
-		Background.shared.speed = -15
-		
-		// TAXI TEST
-        taxiGen = taxiGenerator(scene: self)
-        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
-		// END TAXI TEST
+        if !hasGameOver {
+            Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
+            Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
+            Background.shared.kmLabel = self.childNode(withName: "kmLabel") as? SKLabelNode
+            Background.shared.scene = self
+            Background.shared.speed = -15
+            
+            taxiGen = taxiGenerator(scene: self)
+            timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+        }
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
@@ -62,12 +56,16 @@ class GameManagerScene: SKScene {
 		Background.shared.backgroundOutOfScreen()
 		
 		if hasColision() {
+            hasGameOver = true
+            
 			luber.spriteNode.removeAction(forKey: "moveToLeft")
 			luber.spriteNode.removeAction(forKey: "moveToRight")
 			Background.shared.speed = 0
 			
 			for taxi in taxis {
-				taxi.spriteNode.removeAction(forKey: "taxiTest")
+                if (taxi.spriteNode.action(forKey: "taxiMove") != nil) {
+                    taxi.spriteNode.removeAction(forKey: "taxiMove")
+                }
 			}
 		}
 	}
@@ -92,14 +90,24 @@ class GameManagerScene: SKScene {
 		let x = luber.spriteNode.position.x
 		let y = luber.spriteNode.position.y
 		
-		for taxi in taxis {
-			if x > (taxi.spriteNode.position.x - taxi.spriteNode.size.width) && x < (taxi.spriteNode.position.x + taxi.spriteNode.size.width) {
-				if y > (taxi.spriteNode.position.y - taxi.spriteNode.size.height) && y < (taxi.spriteNode.position.y + taxi.spriteNode.size.height) {
-					print("\nCOLIDIU\n")
-					return true
-				}
-			}
-		}
+        if luber.isMovingToOtherLane() {
+            for taxi in taxis {
+                if x > (taxi.spriteNode.position.x - collisionTolerance * taxi.spriteNode.size.width) && x < (taxi.spriteNode.position.x + collisionTolerance * taxi.spriteNode.size.width) {
+                    if y > (taxi.spriteNode.position.y - collisionTolerance * taxi.spriteNode.size.height) && y < (taxi.spriteNode.position.y + collisionTolerance * taxi.spriteNode.size.height/2) {
+                        print("\nCOLIDIU\n")
+                        return true
+                    }
+                }
+            }
+        } else {
+            for taxi in taxis {
+                if x > (taxi.spriteNode.position.x - taxi.spriteNode.size.width) && x < (taxi.spriteNode.position.x + taxi.spriteNode.size.width) {
+                    if y > (taxi.spriteNode.position.y - taxi.spriteNode.size.height) && y < (taxi.spriteNode.position.y + taxi.spriteNode.size.height) {
+                        return true
+                    }
+                }
+            }
+        }
 		
 		return false
 	}
