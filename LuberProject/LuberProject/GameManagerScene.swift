@@ -136,47 +136,47 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 		let currentScore = Background.shared.distance 
 		let userDefaults = UserDefaults.standard
 		
-		let highscore = userDefaults.object(forKey: "highscore") as? Float
-		
-		viewController.highscore = String(highscore!)
-		
-		if(highscore! < currentScore){
-			userDefaults.set(currentScore, forKey: "highscore")
-			userDefaults.synchronize()
-			viewController.highscore = String(currentScore)
-			
-		}
-		
+        if let highscore = userDefaults.object(forKey: "highscore") as? Float {
+            viewController.highscore = String(highscore)
+            
+            if(highscore < currentScore){
+                userDefaults.set(currentScore, forKey: "highscore")
+                userDefaults.synchronize()
+                viewController.highscore = String(currentScore)
+            }
+        } else {
+            userDefaults.set(currentScore, forKey: "highscore")
+            userDefaults.synchronize()
+            viewController.highscore = String(currentScore)
+        }
+        
 		viewController.currentScore = String(currentScore)
 		viewController.performSegue(withIdentifier: "endGame", sender: self)
-		
 	}
-    func generateTaxi(){
+    
+    func generateTaxi() {
         taxiGen?.trytoGenerate()
     }
-    func removeTaxi(taxi:Taxi){
-        for i  in 0...taxis.count{
-            if (taxi==taxis[i]){taxis[i].spriteNode.removeFromParent()
+    
+    func removeTaxi(taxi:Taxi) {
+        for i  in 0...taxis.count {
+            if (taxi==taxis[i]) {
+                taxis[i].spriteNode.removeFromParent()
                 taxis.remove(at: i)
-                
-                break}
+                break
+            }
         }
-	
     }
     
     func playAudios(){
-        
         let bg = SKAudioNode(fileNamed: "backgroundSong.m4a")
         bg.autoplayLooped = true
         addChild(bg)
         backgroundMusic = bg
-        
     }
     
     func playCrashAudio(){
-        
         self.run(SKAction.playSoundFileNamed("crash.m4a", waitForCompletion: true))
-        
     }
 }
 
