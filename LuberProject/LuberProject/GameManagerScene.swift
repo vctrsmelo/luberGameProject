@@ -13,8 +13,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	var luber: Luber!
 	var taxis: [Taxi] = []
     var timer = Timer()
-    var distance :Float = 0.0
-	
+    var distance : Float = 0
 	public var viewController : GameSceneViewController!
 	
     private var taxiGen : taxiGenerator?
