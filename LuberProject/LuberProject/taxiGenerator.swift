@@ -35,7 +35,7 @@ class taxiGenerator: NSObject {
 
     //funcao que gera taxis de forma facil
     func generateEasyTaxi(){
-            gameScene.addTaxi(atLane: 1,carYDistance: 1,taxiSpeed: 1)
+            gameScene.addTaxi(atLane: 1,carYDistance: 1,taxiSpeed: 3)
     }
     //funcao que gera taxis de forma media
     func generateRegularTaxi(){

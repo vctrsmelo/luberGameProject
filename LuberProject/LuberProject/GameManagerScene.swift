@@ -16,7 +16,8 @@ class GameManagerScene: SKScene {
     private var lane1: SKNode!
     private var lane2: SKNode!
     private var lane3: SKNode!
-    
+    var timer = Timer()
+    private var taxiGen : taxiGenerator?
     private let TAXI_SPRITE_NAME: String = "Car01_test02"
     
     override func sceneDidLoad() {
@@ -27,13 +28,16 @@ class GameManagerScene: SKScene {
         }
         
         // TAXI TEST
-        addTaxi(atLane: 3, carYDistance: 0, taxiSpeed: 1)
-        let moveTaxi = SKAction.move(by: CGVector(dx: 0, dy: -1000), duration: 5)
-        let taxi: Taxi = taxis[0]
-        taxi.spriteNode.run(moveTaxi)
+      taxiGen = taxiGenerator(scene: self)
+      taxiGen?.trytoGenerate()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+
         // END TAXI TEST
     }
     
+    func generateTaxi(){
+        taxiGen?.trytoGenerate()
+    }
     override func didMove(to view: SKView) {
         luber = Luber(spriteName: "Car01_test02", currentLane: 2)
         luber.addPlayerSwipeRecognizer(to: self.view!)
