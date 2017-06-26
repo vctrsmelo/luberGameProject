@@ -39,4 +39,8 @@ class EndGameViewController: UIViewController, UIGestureRecognizerDelegate {
 		
 	}
 	
+	
+	override var prefersStatusBarHidden: Bool {
+		return true
+	}
 }

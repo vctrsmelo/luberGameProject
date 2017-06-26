@@ -37,6 +37,10 @@ class GameSceneViewController: UIViewController {
 		
 	
 	}
+	override var prefersStatusBarHidden: Bool {
+		return true
+	}
+	
     func pause(){
     gamescene?.timer.invalidate()}
     
