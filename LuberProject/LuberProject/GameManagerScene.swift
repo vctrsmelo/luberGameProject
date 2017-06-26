@@ -24,6 +24,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	public var highscoreLabel : SKLabelNode?
     private var pauseButton: SKSpriteNode!
     private var isPausedGame: Bool!
+    private var explosion: SKSpriteNode!
 	private var hasGameOver: Bool!
 	
 	override func sceneDidLoad() {
@@ -47,6 +48,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 		addChild(luber.spriteNode)
         
         pauseButton = childNode(withName: "pauseButton") as! SKSpriteNode
+        explosion = childNode(withName: "explosion") as! SKSpriteNode
         
         playAudios()
         
@@ -131,9 +133,8 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
             hasGameOver = true
             stopAnimations()
             backgroundMusic.run(SKAction.stop())
-			playCrashAudio()
-            animateCarCrash()
-			endGameState()
+            animateCarCrash(at: contact.contactPoint)
+            Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.endGameState), userInfo: nil, repeats: false)
 		}
 	}
 	
@@ -193,20 +194,19 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
         backgroundMusic = bg
     }
     
-    func playCrashAudio(){
-        self.run(SKAction.playSoundFileNamed("crash.m4a", waitForCompletion: true))
-    }
-    
-    func animateCarCrash() {
+    func animateCarCrash(at contactPoint: CGPoint) {
+        explosion.atPoint(contactPoint)
+        
         let textures = [SKTexture(imageNamed: "Explosion_01"), SKTexture(imageNamed: "Explosion_02"),
                         SKTexture(imageNamed: "Explosion_03"), SKTexture(imageNamed: "Explosion_04"),
                         SKTexture(imageNamed: "Explosion_05"), SKTexture(imageNamed: "Explosion_06"),
                         SKTexture(imageNamed: "Explosion_07")]
         let animate = SKAction.animate(with: textures, timePerFrame: 0.2)
-        let sequence = SKAction.sequence([animate])
         
-        let explosion = self.childNode(withName: "explosion")
-        explosion?.run(sequence)
+        let playCrashMusic = SKAction.playSoundFileNamed("crash.m4a", waitForCompletion: true)
+        let group = SKAction.group([animate, playCrashMusic])
+        
+        explosion.run(group)
     }
 }
 
