@@ -69,6 +69,8 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
             timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
         }
 	}
+    
+    
 	
 	override func update(_ currentTime: TimeInterval) {
 		self.highscoreLabel = self.childNode(withName: "highscore") as? SKLabelNode
