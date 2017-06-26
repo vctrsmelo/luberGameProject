@@ -16,15 +16,18 @@ class GameSceneViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.pause), name:NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        
+         NotificationCenter.default.addObserver(self, selector: #selector(self.unpause), name:NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 	
 	var skview : SKView!
-	
+    var gamescene : GameManagerScene?
 	override func viewDidAppear(_ animated: Bool) {
 	
 		let scene = SKScene.init(fileNamed: "GameManagerScene") as! GameManagerScene
 		skview = self.view as! SKView
-		
+		gamescene = scene
 	
 		scene.scaleMode = SKSceneScaleMode.aspectFit
 		
@@ -34,14 +37,21 @@ class GameSceneViewController: UIViewController {
 		
 	
 	}
-	
+    func pause(){
+    gamescene?.timer.invalidate()}
+    
+    func unpause(){
+    gamescene?.setTimer()
+    
+    }
 	override func viewDidDisappear(_ animated: Bool) {
 		skview.presentScene(nil)
 	}
+    
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "endGame"{
-			var destination	= segue.destination as! EndGameViewController
+			let destination	= segue.destination as! EndGameViewController
 			destination.currentScoreString = currentScore
 			destination.highscoreString = highscore
 			
