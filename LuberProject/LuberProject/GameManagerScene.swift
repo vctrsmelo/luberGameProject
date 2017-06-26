@@ -86,10 +86,18 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
         isPausedGame = !isPausedGame
         
         if isPausedGame {
+            let texture = SKTexture(imageNamed: "Icon_play")
+            let textureChange = SKAction.setTexture(texture)
+            pauseButton.run(textureChange)
+
             luber.disablePlayerSwipeRecognizer(to: self.view!)
             timer.invalidate()
             self.view?.isPaused = true
         } else {
+            let texture = SKTexture(imageNamed: "Icon_pause")
+            let textureChange = SKAction.setTexture(texture)
+            pauseButton.run(textureChange)
+            
             luber.addPlayerSwipeRecognizer(to: self.view!)
             timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
             self.view?.isPaused = false

@@ -41,7 +41,7 @@ class GameSceneViewController: UIViewController {
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "endGame"{
-			var destination	= segue.destination as! EndGameViewController
+			let destination	= segue.destination as! EndGameViewController
 			destination.currentScoreString = currentScore
 			destination.highscoreString = highscore
 			
