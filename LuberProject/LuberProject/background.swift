@@ -13,7 +13,7 @@ class Background: NSObject {
 	public var background : SKSpriteNode?
 	public var background2 : SKSpriteNode?
 	public var kmLabel : SKLabelNode?
-	public var speed : Float?
+	public var speed : Float
 	public var scene : SKScene?
 	var coeficientIncrementSpeed : Float
 	var coeficientDeltaDistance : Float
@@ -25,8 +25,9 @@ class Background: NSObject {
 	
 	
 	private override init() {
-		self.coeficientIncrementSpeed = 5
-		self.coeficientDeltaDistance = 0.2
+        self.speed = 0
+		self.coeficientIncrementSpeed = 1
+		self.coeficientDeltaDistance = 0.3
 		self.distance = 0.0
 		self.deltaDistance = 0.0
 		self.speedLimit = 35.0
@@ -46,19 +47,21 @@ class Background: NSObject {
 	}
 	
 	func incrementSpeedAndDistance(){
-		if(deltaDistance == self.coeficientDeltaDistance && self.speed! < self.speedLimit){
-			deltaDistance = 0
-			self.speed = self.speed! - self.coeficientIncrementSpeed
-			
+		if(deltaDistance == self.coeficientDeltaDistance && self.speed > -self.speedLimit){
+			self.speed = self.speed - self.coeficientIncrementSpeed
+            deltaDistance = 0
 		}
+        
 		self.distance = self.distance + 0.1
 		self.deltaDistance = self.deltaDistance + 0.1
 		kmLabel?.text = String(format: "%.1f", self.distance)
+        
+        print("Speed \(speed)\n")
 	}
 	
 	func backgroundRoll(){
-		background?.run(SKAction.moveBy(x: 0, y: CGFloat(speed!), duration: 0))
-		background2?.run(SKAction.moveBy(x: 0, y: CGFloat(speed!), duration: 0))
+		background?.run(SKAction.moveBy(x: 0, y: CGFloat(speed), duration: 0))
+		background2?.run(SKAction.moveBy(x: 0, y: CGFloat(speed), duration: 0))
 		
 	}
 	

@@ -15,17 +15,15 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     var timer = Timer()
     var distance : Float = 0
 	public var viewController : GameSceneViewController!
-	
     private var taxiGen : taxiGenerator?
 	private var lane1: SKNode!
 	private var lane2: SKNode!
 	private var lane3: SKNode!
-	private let TAXI_SPRITE_NAME: String = "Taxi_test01"
-    
+	private let TAXI_SPRITE_NAME: String = "Taxi_NEW"
     private var backgroundMusic: SKAudioNode!
-	
 	public var highscoreLabel : SKLabelNode?
-	
+    private var pauseButton: SKSpriteNode!
+    private var isPausedGame: Bool!
 	private var hasGameOver: Bool!
 	
 	override func sceneDidLoad() {
@@ -35,17 +33,22 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 			self.lane3 = lane3
 		}
         
+        isPausedGame = false
         hasGameOver = false
 	}
 	
 	override func didMove(to view: SKView) {
 		physicsWorld.contactDelegate = self
 		
-		luber = Luber(spriteName: "Car01_test02", currentLane: 2)
-		luber.addPlayerSwipeRecognizer(to: self.view!)
+        luber = Luber(spriteName: "Car01_test02", currentLane: 2)
+        if !isPausedGame {
+            luber.addPlayerSwipeRecognizer(to: self.view!)
+        }
 		addChild(luber.spriteNode)
-		
-
+        
+        pauseButton = childNode(withName: "pauseButton") as! SKSpriteNode
+		pauseButton.zPosition = 2
+        
         playAudios()
         
 		if let lane1 = self.childNode(withName: "lane1"), let lane2 = self.childNode(withName: "lane2"), let lane3 = self.childNode(withName: "//lane3"){
@@ -53,7 +56,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 			self.lane2 = lane2
 			self.lane3 = lane3
 		}
-
+        Background.shared.distance = 0
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
 		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as? SKLabelNode
@@ -73,6 +76,27 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 		Background.shared.backgroundOutOfScreen()
 	}
 	
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        if pauseButton.contains(touch.location(in: self)) {
+            updatePause()
+        }
+    }
+    
+    func updatePause() {
+        isPausedGame = !isPausedGame
+        
+        if isPausedGame {
+            luber.disablePlayerSwipeRecognizer(to: self.view!)
+            timer.invalidate()
+            self.view?.isPaused = true
+        } else {
+            luber.addPlayerSwipeRecognizer(to: self.view!)
+            timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+            self.view?.isPaused = false
+        }
+    }
+    
 	func addTaxi(atLane lane: Int, carYDistance yCars: CGFloat, taxiSpeed: Float){
 		let taxi = Taxi(spriteName: TAXI_SPRITE_NAME, currentLane: lane, speed: taxiSpeed, scene: self)
 		let taxiHeight = taxi.spriteNode.frame.size.height
@@ -116,47 +140,47 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 		let currentScore = Background.shared.distance 
 		let userDefaults = UserDefaults.standard
 		
-		let highscore = userDefaults.object(forKey: "highscore") as? Float
-		
-		viewController.highscore = String(highscore!)
-		
-		if(highscore! < currentScore){
-			userDefaults.set(currentScore, forKey: "highscore")
-			userDefaults.synchronize()
-			viewController.highscore = String(currentScore)
-			
-		}
-		
+        if let highscore = userDefaults.object(forKey: "highscore") as? Float {
+            viewController.highscore = String(highscore)
+            
+            if(highscore < currentScore){
+                userDefaults.set(currentScore, forKey: "highscore")
+                userDefaults.synchronize()
+                viewController.highscore = String(currentScore)
+            }
+        } else {
+            userDefaults.set(currentScore, forKey: "highscore")
+            userDefaults.synchronize()
+            viewController.highscore = String(currentScore)
+        }
+        
 		viewController.currentScore = String(currentScore)
 		viewController.performSegue(withIdentifier: "endGame", sender: self)
-		
 	}
-    func generateTaxi(){
+    
+    func generateTaxi() {
         taxiGen?.trytoGenerate()
     }
-    func removeTaxi(taxi:Taxi){
-        for i  in 0...taxis.count{
-            if (taxi==taxis[i]){taxis[i].spriteNode.removeFromParent()
+    
+    func removeTaxi(taxi:Taxi) {
+        for i  in 0...taxis.count {
+            if (taxi==taxis[i]) {
+                taxis[i].spriteNode.removeFromParent()
                 taxis.remove(at: i)
-                
-                break}
+                break
+            }
         }
-	
     }
     
     func playAudios(){
-        
         let bg = SKAudioNode(fileNamed: "backgroundSong.m4a")
         bg.autoplayLooped = true
         addChild(bg)
         backgroundMusic = bg
-        
     }
     
     func playCrashAudio(){
-        
         self.run(SKAction.playSoundFileNamed("crash.m4a", waitForCompletion: true))
-        
     }
 }
 

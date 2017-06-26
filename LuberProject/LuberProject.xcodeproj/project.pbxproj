@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		152FC3031EFC3CF600901F51 /* taxiGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152FC3021EFC3CF600901F51 /* taxiGenerator.swift */; };
+		159A00BB1EFDB5EA002AD244 /* Minecraft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 159A00BA1EFDB5BC002AD244 /* Minecraft.ttf */; };
 		5B200CCA1EFC5180008759F4 /* background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B200CC91EFC5180008759F4 /* background.swift */; };
 		5B81D5901EFD9DAE00ECEC4B /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B81D58F1EFD9DAE00ECEC4B /* EndGameViewController.swift */; };
 		5B81D5921EFD9F0C00ECEC4B /* GameSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B81D5911EFD9F0C00ECEC4B /* GameSceneViewController.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		152FC3021EFC3CF600901F51 /* taxiGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taxiGenerator.swift; sourceTree = "<group>"; };
+		159A00BA1EFDB5BC002AD244 /* Minecraft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Minecraft.ttf; sourceTree = "<group>"; };
 		5B200CC91EFC5180008759F4 /* background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = background.swift; sourceTree = "<group>"; };
 		5B81D58F1EFD9DAE00ECEC4B /* EndGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGameViewController.swift; sourceTree = "<group>"; };
 		5B81D5911EFD9F0C00ECEC4B /* GameSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				EE015F901EFC370900027662 /* Assets.xcassets */,
 				EE015F921EFC370900027662 /* LaunchScreen.storyboard */,
 				EE015F951EFC370900027662 /* Info.plist */,
+				159A00BA1EFDB5BC002AD244 /* Minecraft.ttf */,
 			);
 			path = LuberProject;
 			sourceTree = "<group>";
@@ -148,7 +151,7 @@
 				TargetAttributes = {
 					EE015F7F1EFC370900027662 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = Y93HUJS49V;
+						DevelopmentTeam = MX697MNWTH;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -178,6 +181,7 @@
 			files = (
 				EE015F8F1EFC370900027662 /* Main.storyboard in Resources */,
 				EE015F861EFC370900027662 /* GameManagerScene.sks in Resources */,
+				159A00BB1EFDB5EA002AD244 /* Minecraft.ttf in Resources */,
 				EE015F911EFC370900027662 /* Assets.xcassets in Resources */,
 				EE015F941EFC370900027662 /* LaunchScreen.storyboard in Resources */,
 				EE015F881EFC370900027662 /* Actions.sks in Resources */,
@@ -325,7 +329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y93HUJS49V;
+				DEVELOPMENT_TEAM = MX697MNWTH;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.LuberProject;
@@ -338,7 +342,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Y93HUJS49V;
+				DEVELOPMENT_TEAM = MX697MNWTH;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.LuberProject;
