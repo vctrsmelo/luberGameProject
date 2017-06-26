@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -141,7 +141,7 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="ButtonRetry"/>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="0xB-fz-21K"/>
+                                    <segue destination="MIE-ni-gEw" kind="unwind" unwindAction="unwindWithSegue:" id="llL-2s-5yW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -172,12 +172,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="creditsLabel" destination="UmN-JE-5nI" id="dMR-ow-9Ko"/>
                         <outlet property="currentScore" destination="ABh-xc-pqX" id="azN-W1-jtC"/>
                         <outlet property="highscore" destination="Z42-kQ-F5Q" id="0Jb-KB-Hfb"/>
                         <segue destination="Ygk-C6-mjv" kind="show" identifier="gotoCredits" id="hV0-FK-C5P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qba-Zp-50C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="MIE-ni-gEw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1796" y="139.880059970015"/>
         </scene>
@@ -192,10 +194,21 @@
                     <view key="view" contentMode="scaleToFill" id="ut1-5F-X56" customClass="CreditsViewController">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whb-sN-fOF">
+                                <rect key="frame" x="136" y="496" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="NXQ-Lp-50g" kind="unwind" unwindAction="unwindWithSegue:" id="Mdk-uV-oNX"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9UB-Mg-6Lb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="NXQ-Lp-50g" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1882" y="1307"/>
         </scene>

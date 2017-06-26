@@ -218,7 +218,7 @@ class taxiGenerator: NSObject {
 enum difficulty: Float {
     case easy = 0.250
     case regular = 0.750
-    case hard = 1
-    case superhard = 2
+    case hard = 3
+    case superhard = 5
     
 }
