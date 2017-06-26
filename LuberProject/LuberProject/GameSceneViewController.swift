@@ -22,7 +22,7 @@ class GameSceneViewController: UIViewController {
 	var skview : SKView!
     var gamescene : GameManagerScene?
 	override func viewDidAppear(_ animated: Bool) {
-		
+	
 		let scene = SKScene.init(fileNamed: "GameManagerScene") as! GameManagerScene
 		skview = self.view as! SKView
 		gamescene = scene
@@ -44,11 +44,17 @@ class GameSceneViewController: UIViewController {
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "endGame"{
-			var destination	= segue.destination as! EndGameViewController
+			let destination	= segue.destination as! EndGameViewController
 			destination.currentScoreString = currentScore
 			destination.highscoreString = highscore
 			
 		}
+	}
+	
+	
+	@IBAction func unwind(segue:UIStoryboardSegue) {
+		
+		
 	}
 	
 }
