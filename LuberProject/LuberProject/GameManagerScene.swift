@@ -70,6 +70,9 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
+		
+		
+		
 		self.highscoreLabel = self.childNode(withName: "highscore") as? SKLabelNode
 		distance = Background.shared.distance
 		Background.shared.backgroundRoll()
