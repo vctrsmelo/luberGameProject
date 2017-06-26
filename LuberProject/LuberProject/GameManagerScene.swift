@@ -19,10 +19,11 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	private var lane1: SKNode!
 	private var lane2: SKNode!
 	private var lane3: SKNode!
-	private let TAXI_SPRITE_NAME: String = "Taxi_NEW"
+	private let TAXI_SPRITE_NAME: String = "Yellow_Taxi"
     private var backgroundMusic: SKAudioNode!
 	public var highscoreLabel : SKLabelNode?
     private var pauseButton: SKSpriteNode!
+    private var playButton: SKSpriteNode!
     private var isPausedGame: Bool!
 	private var hasGameOver: Bool!
 	
@@ -47,7 +48,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 		addChild(luber.spriteNode)
         
         pauseButton = childNode(withName: "pauseButton") as! SKSpriteNode
-		pauseButton.zPosition = 2
+        playButton = childNode(withName: "playButton") as! SKSpriteNode
         
         playAudios()
         
@@ -68,7 +69,12 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
             timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
         }
 	}
-	
+    
+    
+    func setTimer(){
+    timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+    
+    }
 	override func update(_ currentTime: TimeInterval) {
 		self.highscoreLabel = self.childNode(withName: "highscore") as? SKLabelNode
 		distance = Background.shared.distance
@@ -87,10 +93,16 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
         isPausedGame = !isPausedGame
         
         if isPausedGame {
+            pauseButton.zPosition = 1
+            playButton.zPosition = 2
+            
             luber.disablePlayerSwipeRecognizer(to: self.view!)
             timer.invalidate()
             self.view?.isPaused = true
         } else {
+            pauseButton.zPosition = 2
+            playButton.zPosition = 1
+            
             luber.addPlayerSwipeRecognizer(to: self.view!)
             timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
             self.view?.isPaused = false
@@ -114,24 +126,13 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	}
 	
 	func didBegin(_ contact: SKPhysicsContact) {
-	
 		if(contact.bodyA.node == luber.spriteNode || contact.bodyB.node == luber.spriteNode){
             hasGameOver = true
-            taxiGen?.maxNumberOfTaxi = 0
-            
-			luber.spriteNode.removeAction(forKey: "moveToLeft")
-			luber.spriteNode.removeAction(forKey: "moveToRight")
-			Background.shared.speed = 0
-			
-			for taxi in taxis {
-				taxi.spriteNode.removeAction(forKey: "taxiMovement")
-			}
-
-            
+            stopAnimations()
             backgroundMusic.run(SKAction.stop())
 			playCrashAudio()
+            animateCarCrash()
 			endGameState()
-            
 		}
 	}
 	
@@ -172,6 +173,18 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
         }
     }
     
+    func stopAnimations() {
+        taxiGen?.maxNumberOfTaxi = 0
+        
+        luber.spriteNode.removeAction(forKey: "moveToLeft")
+        luber.spriteNode.removeAction(forKey: "moveToRight")
+        Background.shared.speed = 0
+        
+        for taxi in taxis {
+            taxi.spriteNode.removeAction(forKey: "taxiMovement")
+        }
+    }
+    
     func playAudios(){
         let bg = SKAudioNode(fileNamed: "backgroundSong.m4a")
         bg.autoplayLooped = true
@@ -181,6 +194,18 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     
     func playCrashAudio(){
         self.run(SKAction.playSoundFileNamed("crash.m4a", waitForCompletion: true))
+    }
+    
+    func animateCarCrash() {
+        let textures = [SKTexture(imageNamed: "Explosion_01"), SKTexture(imageNamed: "Explosion_02"),
+                        SKTexture(imageNamed: "Explosion_03"), SKTexture(imageNamed: "Explosion_04"),
+                        SKTexture(imageNamed: "Explosion_05"), SKTexture(imageNamed: "Explosion_06"),
+                        SKTexture(imageNamed: "Explosion_07")]
+        let animate = SKAction.animate(with: textures, timePerFrame: 0.2)
+        let sequence = SKAction.sequence([animate])
+        
+        let explosion = self.childNode(withName: "explosion")
+        explosion?.run(sequence)
     }
 }
 
