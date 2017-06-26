@@ -46,6 +46,9 @@ class MainMenuViewController: UIViewController {
 		}
 	}
 	
+	override var prefersStatusBarHidden: Bool {
+		return true
+	}
 	
 	@IBAction func unwind(segue:UIStoryboardSegue) {
 		
