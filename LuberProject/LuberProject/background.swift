@@ -54,7 +54,7 @@ class Background: NSObject {
         
 		self.distance = self.distance + 0.1
 		self.deltaDistance = self.deltaDistance + 0.1
-		kmLabel?.text = String(format: "%.1f", self.distance)
+		kmLabel?.text = String(format: "%.1f Km", self.distance)
         
         print("Speed \(speed)\n")
 	}
