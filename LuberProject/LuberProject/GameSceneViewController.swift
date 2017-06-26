@@ -16,13 +16,12 @@ class GameSceneViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 	
 	var skview : SKView!
 	
 	override func viewDidAppear(_ animated: Bool) {
-		
+	
 		let scene = SKScene.init(fileNamed: "GameManagerScene") as! GameManagerScene
 		skview = self.view as! SKView
 		
@@ -47,6 +46,12 @@ class GameSceneViewController: UIViewController {
 			destination.highscoreString = highscore
 			
 		}
+	}
+	
+	
+	@IBAction func unwind(segue:UIStoryboardSegue) {
+		
+		
 	}
 	
 }

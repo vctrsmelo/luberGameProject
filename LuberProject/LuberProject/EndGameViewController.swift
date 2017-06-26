@@ -8,10 +8,11 @@
 
 import UIKit
 
-class EndGameViewController: UIViewController {
+class EndGameViewController: UIViewController, UIGestureRecognizerDelegate {
 
 	@IBOutlet weak var highscore: UILabel!
 	@IBOutlet weak var currentScore: UILabel!
+	@IBOutlet weak var creditsLabel: UILabel!
 	
 	public var currentScoreString : String = ""
 	public var highscoreString : String = ""
@@ -22,23 +23,20 @@ class EndGameViewController: UIViewController {
 		currentScore.text = currentScoreString
 		highscore.text = highscoreString
 		
-        // Do any additional setup after loading the view.
+		creditsLabel.isUserInteractionEnabled = true
+		
+		let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector (self.handleTap(gestureRecognizer:)))
+		
+		creditsLabel.addGestureRecognizer(gestureRecognizer)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	
+	func handleTap(gestureRecognizer: UIGestureRecognizer){
+		performSegue(withIdentifier: "gotoCredits", sender: nil)
+	}
+	
+	@IBAction func unwind(segue:UIStoryboardSegue) {
+		
+		
+	}
+	
 }
