@@ -19,7 +19,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	private var lane1: SKNode!
 	private var lane2: SKNode!
 	private var lane3: SKNode!
-	private let TAXI_SPRITE_NAME: String = "Taxi_test01"
+	private let TAXI_SPRITE_NAME: String = "Taxi_NEW"
     private var backgroundMusic: SKAudioNode!
 	public var highscoreLabel : SKLabelNode?
     private var pauseButton: SKSpriteNode!
@@ -56,7 +56,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 			self.lane2 = lane2
 			self.lane3 = lane3
 		}
-
+        Background.shared.distance = 0
 		Background.shared.background = self.childNode(withName: "background") as? SKSpriteNode
 		Background.shared.background2 = self.childNode(withName: "background2") as? SKSpriteNode
 		Background.shared.kmLabel = self.childNode(withName: "kmLabel") as? SKLabelNode

@@ -30,7 +30,7 @@ class Background: NSObject {
 		self.coeficientDeltaDistance = 0.3
 		self.distance = 0.0
 		self.deltaDistance = 0.0
-		self.speedLimit = 60.0
+		self.speedLimit = 45
 	}
 	
 	func backgroundOutOfScreen(){
