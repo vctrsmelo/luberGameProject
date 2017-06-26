@@ -19,7 +19,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	private var lane1: SKNode!
 	private var lane2: SKNode!
 	private var lane3: SKNode!
-	private let TAXI_SPRITE_NAME: String = "Taxi_NEW"
+	private let TAXI_SPRITE_NAME: String = "Yellow_Taxi"
     private var backgroundMusic: SKAudioNode!
 	public var highscoreLabel : SKLabelNode?
     private var pauseButton: SKSpriteNode!
