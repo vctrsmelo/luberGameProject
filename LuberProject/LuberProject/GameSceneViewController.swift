@@ -17,6 +17,8 @@ class GameSceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(self.pause), name:NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        
+         NotificationCenter.default.addObserver(self, selector: #selector(self.unpause), name:NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 	
 	var skview : SKView!
@@ -37,6 +39,11 @@ class GameSceneViewController: UIViewController {
 	}
     func pause(){
     gamescene?.timer.invalidate()}
+    
+    func unpause(){
+    gamescene?.setTimer()
+    
+    }
 	override func viewDidDisappear(_ animated: Bool) {
 		skview.presentScene(nil)
 	}
