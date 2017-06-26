@@ -70,15 +70,11 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
         }
 	}
     
-    
     func setTimer(){
-    timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
-    
+        timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
     }
+    
 	override func update(_ currentTime: TimeInterval) {
-		
-		
-		
 		self.highscoreLabel = self.childNode(withName: "highscore") as? SKLabelNode
 		distance = Background.shared.distance
 		Background.shared.backgroundRoll()
@@ -134,7 +130,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
             stopAnimations()
             backgroundMusic.run(SKAction.stop())
             animateCarCrash(at: contact.contactPoint)
-            Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.endGameState), userInfo: nil, repeats: false)
+            Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.endGameState), userInfo: nil, repeats: false)
 		}
 	}
 	
@@ -176,14 +172,15 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     }
     
     func stopAnimations() {
-        taxiGen?.maxNumberOfTaxi = 0
+        timer.invalidate()
         
-        luber.spriteNode.removeAction(forKey: "moveToLeft")
-        luber.spriteNode.removeAction(forKey: "moveToRight")
+        luber.spriteNode.removeAllActions()
+        luber.disablePlayerSwipeRecognizer(to: self.view)
+        
         Background.shared.speed = 0
         
         for taxi in taxis {
-            taxi.spriteNode.removeAction(forKey: "taxiMovement")
+            taxi.spriteNode.removeAllActions()
         }
     }
     
@@ -195,17 +192,17 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     }
     
     func animateCarCrash(at contactPoint: CGPoint) {
-        explosion.atPoint(contactPoint)
-        
         let textures = [SKTexture(imageNamed: "Explosion_01"), SKTexture(imageNamed: "Explosion_02"),
                         SKTexture(imageNamed: "Explosion_03"), SKTexture(imageNamed: "Explosion_04"),
                         SKTexture(imageNamed: "Explosion_05"), SKTexture(imageNamed: "Explosion_06"),
                         SKTexture(imageNamed: "Explosion_07")]
-        let animate = SKAction.animate(with: textures, timePerFrame: 0.2)
+        let animate = SKAction.animate(with: textures, timePerFrame: 0.1)
         
-        let playCrashMusic = SKAction.playSoundFileNamed("crash.m4a", waitForCompletion: true)
-        let group = SKAction.group([animate, playCrashMusic])
+        let playCrashAudio = SKAction.playSoundFileNamed("crash.m4a", waitForCompletion: true)
+        let group = SKAction.group([animate, playCrashAudio])
         
+        explosion.size = CGSize(width: 2 * textures[0].cgImage().width, height: 2 * textures[0].cgImage().height)
+        explosion.run(SKAction.move(to: contactPoint, duration: 0))
         explosion.run(group)
     }
 }
