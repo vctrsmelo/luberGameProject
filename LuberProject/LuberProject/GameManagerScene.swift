@@ -23,6 +23,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     private var backgroundMusic: SKAudioNode!
 	public var highscoreLabel : SKLabelNode?
     private var pauseButton: SKSpriteNode!
+    private var playButton: SKSpriteNode!
     private var isPausedGame: Bool!
 	private var hasGameOver: Bool!
 	
@@ -47,6 +48,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 		addChild(luber.spriteNode)
         
         pauseButton = childNode(withName: "pauseButton") as! SKSpriteNode
+        playButton = childNode(withName: "playButton") as! SKSpriteNode
         
         playAudios()
         
@@ -91,17 +93,15 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
         isPausedGame = !isPausedGame
         
         if isPausedGame {
-            let texture = SKTexture(imageNamed: "Icon_play")
-            let textureChange = SKAction.setTexture(texture)
-            pauseButton.run(textureChange)
-
+            pauseButton.zPosition = 1
+            playButton.zPosition = 2
+            
             luber.disablePlayerSwipeRecognizer(to: self.view!)
             timer.invalidate()
             self.view?.isPaused = true
         } else {
-            let texture = SKTexture(imageNamed: "Icon_pause")
-            let textureChange = SKAction.setTexture(texture)
-            pauseButton.run(textureChange)
+            pauseButton.zPosition = 2
+            playButton.zPosition = 1
             
             luber.addPlayerSwipeRecognizer(to: self.view!)
             timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
