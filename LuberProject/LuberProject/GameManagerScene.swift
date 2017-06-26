@@ -97,15 +97,23 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
             luber.disablePlayerSwipeRecognizer(to: self.view!)
             timer.invalidate()
 
-            self.view?.isPaused = true
+            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.pauseGame), userInfo: nil, repeats: false)
         } else {
             pauseButton.run(SKAction.setTexture(SKTexture(imageNamed: "Icon_pause")), withKey: "textureChange")
             
             luber.addPlayerSwipeRecognizer(to: self.view!)
             timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
 
-            self.view?.isPaused = false
+            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.unpauseGame), userInfo: nil, repeats: false)
         }
+    }
+    
+    func pauseGame() {
+        self.view?.isPaused = true
+    }
+    
+    func unpauseGame() {
+        self.view?.isPaused = false
     }
     
 	func addTaxi(atLane lane: Int, carYDistance yCars: CGFloat, taxiSpeed: Float){
