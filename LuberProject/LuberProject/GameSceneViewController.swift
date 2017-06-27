@@ -65,4 +65,9 @@ class GameSceneViewController: UIViewController {
 			
 		}
 	}
+    
+    @IBAction func unwind(segue:UIStoryboardSegue) {
+        
+        
+    } 
 }
