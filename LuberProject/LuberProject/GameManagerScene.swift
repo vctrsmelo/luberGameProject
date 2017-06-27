@@ -23,7 +23,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     private var backgroundMusic: SKAudioNode!
 	public var highscoreLabel : SKLabelNode?
     private var pauseButton: SKSpriteNode!
-    private var isPausedGame: Bool!
+    public var isPausedGame: Bool!
     private var explosion: SKSpriteNode!
 	private var hasGameOver: Bool!
 	

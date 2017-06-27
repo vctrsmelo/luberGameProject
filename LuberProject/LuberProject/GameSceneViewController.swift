@@ -13,6 +13,8 @@ class GameSceneViewController: UIViewController {
 
 	public var highscore : String!
 	public var currentScore : String!
+    var skview : SKView!
+    var gamescene : GameManagerScene?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +23,6 @@ class GameSceneViewController: UIViewController {
          NotificationCenter.default.addObserver(self, selector: #selector(self.unpause), name:NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 	
-	var skview : SKView!
-    var gamescene : GameManagerScene?
 	override func viewDidAppear(_ animated: Bool) {
 	
 		let scene = SKScene.init(fileNamed: "GameManagerScene") as! GameManagerScene
@@ -33,26 +33,30 @@ class GameSceneViewController: UIViewController {
 		
 		scene.viewController = self
 		skview.presentScene(scene)
-		
-		
-	
 	}
+    
 	override var prefersStatusBarHidden: Bool {
 		return true
 	}
 	
     func pause(){
-    gamescene?.timer.invalidate()}
+        let isPausedGame: Bool! = gamescene?.isPausedGame
+        if isPausedGame {
+            gamescene?.timer.invalidate()
+        }
+    }
     
     func unpause(){
-    gamescene?.setTimer()
-    
+        let isPausedGame: Bool! = gamescene?.isPausedGame
+        if !isPausedGame {
+            gamescene?.setTimer()
+        }
     }
+    
 	override func viewDidDisappear(_ animated: Bool) {
 		skview.presentScene(nil)
 	}
     
-	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == "endGame"{
 			let destination	= segue.destination as! EndGameViewController
@@ -61,11 +65,4 @@ class GameSceneViewController: UIViewController {
 			
 		}
 	}
-	
-	
-	@IBAction func unwind(segue:UIStoryboardSegue) {
-		
-		
-	}
-	
 }
