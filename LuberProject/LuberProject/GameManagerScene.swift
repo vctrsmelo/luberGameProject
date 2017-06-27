@@ -83,8 +83,10 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
-        if pauseButton.contains(touch.location(in: self)) {
-            updatePause()
+        if !hasGameOver {
+            if pauseButton.contains(touch.location(in: self)) {
+                updatePause()
+            }
         }
     }
     
