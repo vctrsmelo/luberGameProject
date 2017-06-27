@@ -23,7 +23,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     private var backgroundMusic: SKAudioNode!
 	public var highscoreLabel : SKLabelNode?
     private var pauseButton: SKSpriteNode!
-    private var isPausedGame: Bool!
+    public var isPausedGame: Bool!
     private var explosion: SKSpriteNode!
 	private var hasGameOver: Bool!
 	
@@ -83,8 +83,10 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
-        if pauseButton.contains(touch.location(in: self)) {
-            updatePause()
+        if !hasGameOver {
+            if pauseButton.contains(touch.location(in: self)) {
+                updatePause()
+            }
         }
     }
     
