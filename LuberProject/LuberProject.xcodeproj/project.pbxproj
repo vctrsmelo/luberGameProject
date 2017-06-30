@@ -28,6 +28,11 @@
 		EE015FA11EFC37D800027662 /* Luber.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015FA01EFC37D800027662 /* Luber.swift */; };
 		EE0F16991EFD9D0700E5F358 /* backgroundSong.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EE0F16981EFD9D0700E5F358 /* backgroundSong.m4a */; };
 		EE0F16A71EFDB0A200E5F358 /* crash.m4a in Resources */ = {isa = PBXBuildFile; fileRef = EE0F16A61EFDB0A200E5F358 /* crash.m4a */; };
+		EE2099CA1F05762E00B57106 /* libGameAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2099C91F05762E00B57106 /* libGameAnalytics.a */; };
+		EE2099CF1F05767500B57106 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2099CE1F05767500B57106 /* SystemConfiguration.framework */; };
+		EE2099D11F05767F00B57106 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2099D01F05767F00B57106 /* libsqlite3.tbd */; };
+		EE2099D31F05768500B57106 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2099D21F05768500B57106 /* libz.tbd */; };
+		EE2099D51F06AF4300B57106 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE2099CC1F05766B00B57106 /* AdSupport.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +59,13 @@
 		EE015FA01EFC37D800027662 /* Luber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Luber.swift; sourceTree = "<group>"; };
 		EE0F16981EFD9D0700E5F358 /* backgroundSong.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = backgroundSong.m4a; sourceTree = "<group>"; };
 		EE0F16A61EFDB0A200E5F358 /* crash.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = crash.m4a; sourceTree = "<group>"; };
+		EE2099C81F05762E00B57106 /* GameAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAnalytics.h; sourceTree = "<group>"; };
+		EE2099C91F05762E00B57106 /* libGameAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGameAnalytics.a; sourceTree = "<group>"; };
+		EE2099CC1F05766B00B57106 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		EE2099CE1F05767500B57106 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EE2099D01F05767F00B57106 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		EE2099D21F05768500B57106 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		EE2099D41F0576D700B57106 /* GameAnalytics-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GameAnalytics-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +73,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE2099D51F06AF4300B57106 /* AdSupport.framework in Frameworks */,
+				EE2099D31F05768500B57106 /* libz.tbd in Frameworks */,
+				EE2099D11F05767F00B57106 /* libsqlite3.tbd in Frameworks */,
+				EE2099CF1F05767500B57106 /* SystemConfiguration.framework in Frameworks */,
+				EE2099CA1F05762E00B57106 /* libGameAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +89,7 @@
 			children = (
 				EE015F821EFC370900027662 /* LuberProject */,
 				EE015F811EFC370900027662 /* Products */,
+				EE2099CB1F05766B00B57106 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +104,8 @@
 		EE015F821EFC370900027662 /* LuberProject */ = {
 			isa = PBXGroup;
 			children = (
+				EE2099D41F0576D700B57106 /* GameAnalytics-Bridging-Header.h */,
+				EE2099C71F05758200B57106 /* GameAnalytics */,
 				EE0F16911EFD97D700E5F358 /* Audios */,
 				EE015F9D1EFC379F00027662 /* Core Classes */,
 				EE015F831EFC370900027662 /* AppDelegate.swift */,
@@ -126,6 +146,26 @@
 				EE0F16A61EFDB0A200E5F358 /* crash.m4a */,
 			);
 			name = Audios;
+			sourceTree = "<group>";
+		};
+		EE2099C71F05758200B57106 /* GameAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				EE2099C81F05762E00B57106 /* GameAnalytics.h */,
+				EE2099C91F05762E00B57106 /* libGameAnalytics.a */,
+			);
+			name = GameAnalytics;
+			sourceTree = "<group>";
+		};
+		EE2099CB1F05766B00B57106 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE2099D21F05768500B57106 /* libz.tbd */,
+				EE2099D01F05767F00B57106 /* libsqlite3.tbd */,
+				EE2099CE1F05767500B57106 /* SystemConfiguration.framework */,
+				EE2099CC1F05766B00B57106 /* AdSupport.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,9 +385,15 @@
 				DEVELOPMENT_TEAM = Y93HUJS49V;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LuberProject",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.lubersRush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "./LuberProject/GameAnalytics-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -360,9 +406,14 @@
 				DEVELOPMENT_TEAM = Y93HUJS49V;
 				INFOPLIST_FILE = LuberProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LuberProject",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.lubersRush;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "./LuberProject/GameAnalytics-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

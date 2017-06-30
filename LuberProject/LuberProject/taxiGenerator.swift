@@ -52,8 +52,8 @@ class taxiGenerator: NSObject {
 	func generateRegularTaxi(){
 		let random = Int(arc4random_uniform(3))
 		
-		if random==1{geraDoisTaxi(speed: 3)}
-		else {geraUmTaxi(speed: 3)}
+		if random==1{geraDoisTaxi(speed: 2.8)}
+		else {geraUmTaxi(speed: 2.8)}
 		
 	}
 	//funcao que gera taxis de forma dificil
@@ -62,7 +62,7 @@ class taxiGenerator: NSObject {
 		
 		switch random {
 		case 1:
-			geraDoisTaxi(speed: 3)
+			geraDoisTaxi(speed: 2.5)
 		case 2:
 			geraCompostoTaxi(speed: 2.5)
 		case 3:
@@ -78,13 +78,13 @@ class taxiGenerator: NSObject {
 		
 		switch random {
 		case 1:
-			geraImpossivel(speed: 2.25)
+			geraImpossivel(speed: 2.30)
 		case 2:
-			geraCompostoQuadruplo(speed: 2.25)
+			geraCompostoQuadruplo(speed: 2.30)
 		case 3:
-			geraCompostoTriplo(speed: 2.25)
+			geraCompostoTriplo(speed: 2.30)
 		default:
-			geraCompostoTaxi(speed: 2.25)
+			geraCompostoTaxi(speed: 2.30)
 		}
 		
 		
@@ -166,7 +166,7 @@ class taxiGenerator: NSObject {
 		}
 		
 		gameScene.addTaxi(atLane:random ,carYDistance: 0,taxiSpeed: Float(speed))
-		gameScene.addTaxi(atLane:random2 ,carYDistance: 2,taxiSpeed: Float(speed)-0.5)
+		gameScene.addTaxi(atLane:random2 ,carYDistance: 2,taxiSpeed: Float(speed)-0.2)
 		gameScene.addTaxi(atLane:random2 ,carYDistance: 3,taxiSpeed: Float(speed))
 		
 		

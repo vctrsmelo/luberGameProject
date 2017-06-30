@@ -16,12 +16,15 @@ class EndGameViewController: UIViewController, UIGestureRecognizerDelegate {
 	
 	public var currentScoreString : String = ""
 	public var highscoreString : String = ""
+    public var currentScoreNumber: Double = 0.0
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		currentScore.text = currentScoreString
 		highscore.text = highscoreString
+        
+        GameAnalytics.addDesignEvent(withEventId: "UserScore", value: currentScoreNumber as NSNumber)
 		
 		creditsLabel.isUserInteractionEnabled = true
 		
