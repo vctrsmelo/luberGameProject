@@ -77,6 +77,10 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     func applicationWillResignActive(notification: NSNotification) {
         if !self.isPausedGame {
             self.updatePause()
+            
+            DispatchQueue.global(qos: .background).async {
+                
+            }
         }
     }
     

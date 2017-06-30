@@ -10,10 +10,9 @@ import SpriteKit
 
 class MainMenuManager: SKScene {
 	
-	public var viewController : MainMenuViewController!
-	
-	
-	private var taxis : [SKSpriteNode] = []
+	public var viewController: MainMenuViewController!
+	private var taxis: [SKSpriteNode] = []
+    private var playButton: SKSpriteNode!
 	
 	override func didMove(to view: SKView) {
 		
@@ -25,12 +24,17 @@ class MainMenuManager: SKScene {
 			let random = Int((arc4random_uniform(10))+1)
 			taxi.position.y = CGFloat(-1000*random)
 		}
+        
+        playButton = childNode(withName: "StartGame") as! SKSpriteNode
+        let increaseScale = SKAction.scale(by: 1.1, duration: 0.5)
+        let decreaseScale = SKAction.scale(to: 1, duration: 0.5)
+        let animation = SKAction.repeatForever(SKAction.sequence([increaseScale, decreaseScale]))
+        playButton.run(animation)
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
 		carOutOfScreen()
 		taxiRoll()
-		
 	}
 	
 	func carOutOfScreen(){
@@ -40,16 +44,13 @@ class MainMenuManager: SKScene {
 				taxi.position.y = CGFloat(-1000*random)
 			}
 		}
-		
 	}
-	
 	
 	func taxiRoll(){
 		for taxi in taxis{
 			taxi.run(SKAction.moveBy(x: 0, y: 35, duration: 0))
 		}
 	}
-	
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		
@@ -61,10 +62,5 @@ class MainMenuManager: SKScene {
 		if (touchedNode?.name == "StartGame") {
 			viewController.performSegue(withIdentifier: "gotoGame", sender: nil)
 		}
-		
-		
 	}
-	
-	
-	
 }
