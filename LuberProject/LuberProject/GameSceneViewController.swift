@@ -62,6 +62,7 @@ class GameSceneViewController: UIViewController {
 			let destination	= segue.destination as! EndGameViewController
 			destination.currentScoreString = currentScore + " Km"
 			destination.highscoreString = highscore + " Km"
+            destination.currentScoreNumber = Double(currentScore)!
 			
 		}
 	}
