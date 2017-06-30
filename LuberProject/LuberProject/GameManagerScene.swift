@@ -23,6 +23,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     private var backgroundMusic: SKAudioNode!
 	public var highscoreLabel : SKLabelNode?
     private var pauseButton: SKSpriteNode!
+    private var pauseScreen: SKSpriteNode!
     public var isPausedGame: Bool!
     private var explosion: SKSpriteNode!
 	private var hasGameOver: Bool!
@@ -47,6 +48,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
         }
 		addChild(luber.spriteNode)
         
+        pauseScreen = childNode(withName: "pauseScreen") as! SKSpriteNode
         pauseButton = childNode(withName: "pauseButton") as! SKSpriteNode
         explosion = childNode(withName: "explosion") as! SKSpriteNode
         
@@ -69,21 +71,12 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
             timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
 	}
     
     func applicationWillResignActive(notification: NSNotification) {
-        if !isPausedGame {
-            timer.invalidate()
-            self.view?.isPaused = true
-        }
-    }
-    
-    func applicationWillEnterForeground(notification: NSNotification) {
-        if !isPausedGame {
-            timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
-            self.view?.isPaused = false
+        if !self.isPausedGame {
+            self.updatePause()
         }
     }
     
@@ -112,6 +105,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
         
         if isPausedGame {
             pauseButton.run(SKAction.setTexture(SKTexture(imageNamed: "Icon_play")), withKey: "textureChange")
+            pauseScreen.zPosition = 4
             
             luber.disablePlayerSwipeRecognizer(to: self.view!)
             timer.invalidate()
@@ -119,6 +113,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
             Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.pauseGame), userInfo: nil, repeats: false)
         } else {
             pauseButton.run(SKAction.setTexture(SKTexture(imageNamed: "Icon_pause")), withKey: "textureChange")
+            pauseScreen.zPosition = 0
             
             luber.addPlayerSwipeRecognizer(to: self.view!)
             timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)

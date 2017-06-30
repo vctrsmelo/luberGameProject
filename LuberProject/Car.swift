@@ -24,6 +24,7 @@ class Car: NSObject {
         self.spriteNode = SKSpriteNode(imageNamed: spriteName)
         self.currentLane = currentLane
 		self.spriteNode.position.y = CGFloat(-400)
+        self.spriteNode.zPosition = 2
 		let conx = (spriteNode.texture?.size().height)! - 40
 		let cony = (spriteNode.texture?.size().width)! - 40
 		let size = CGSize.init(width: cony, height: conx)
