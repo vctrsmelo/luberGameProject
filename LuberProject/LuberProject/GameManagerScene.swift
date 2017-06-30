@@ -39,7 +39,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
 	}
 	
 	override func didMove(to view: SKView) {
-		physicsWorld.contactDelegate = self
+        physicsWorld.contactDelegate = self
 		
         luber = Luber(spriteName: "Car01_test02", currentLane: 2)
         if !isPausedGame {
@@ -68,7 +68,24 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
             taxiGen = taxiGenerator(scene: self)
             timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
 	}
+    
+    func applicationWillResignActive(notification: NSNotification) {
+        if !isPausedGame {
+            timer.invalidate()
+            self.view?.isPaused = true
+        }
+    }
+    
+    func applicationWillEnterForeground(notification: NSNotification) {
+        if !isPausedGame {
+            timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
+            self.view?.isPaused = false
+        }
+    }
     
     func setTimer(){
         timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
@@ -104,7 +121,7 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
             pauseButton.run(SKAction.setTexture(SKTexture(imageNamed: "Icon_pause")), withKey: "textureChange")
             
             luber.addPlayerSwipeRecognizer(to: self.view!)
-            timer.fire()
+            timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: true)
 
             Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.unpauseGame), userInfo: nil, repeats: false)
         }
@@ -116,8 +133,8 @@ class GameManagerScene: SKScene, SKPhysicsContactDelegate{
     
     func unpauseGame() {
         self.view?.isPaused = false
-        if taxis.count < 2 {
-            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.generateTaxi), userInfo: nil, repeats: false)
+        if taxis.count < 1 {
+            generateTaxi()
         }
     }
     
