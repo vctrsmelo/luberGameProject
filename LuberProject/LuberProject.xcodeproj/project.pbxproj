@@ -200,7 +200,7 @@
 				TargetAttributes = {
 					EE015F7F1EFC370900027662 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = VXAGBDYAT9;
+						DevelopmentTeam = Y93HUJS49V;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -382,8 +382,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VXAGBDYAT9;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				INFOPLIST_FILE = LuberProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -403,8 +404,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VXAGBDYAT9;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				INFOPLIST_FILE = LuberProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
